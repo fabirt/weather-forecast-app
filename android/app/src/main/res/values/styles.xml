@@ -11,4 +11,9 @@
 
     </style>
 
+    <style name="BottomNavigationTextAppereance" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="fontFamily">@font/helvetica_neue_medium</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
 </resources>

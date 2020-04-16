@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">My Weather Forecast</string>
+    <string name="current_weather">Today</string>
+    <string name="future_weather">This week</string>
+    <string name="preferences">Preferences</string>
 </resources>
