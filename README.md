@@ -1,2 +1,2 @@
-# weather-forecast-app
-A simple weather forecast Android app
+# Weather Forecast App
+A simple weather forecast Android app.
