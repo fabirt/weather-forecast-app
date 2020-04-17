@@ -15,6 +15,7 @@ import kotlinx.coroutines.withContext
 import org.threeten.bp.LocalDate
 import org.threeten.bp.format.DateTimeFormatter
 import java.lang.Exception
+import java.util.*
 
 class WeatherRepositoryImpl(
     private val weatherService: WeatherApiService,
@@ -26,7 +27,7 @@ class WeatherRepositoryImpl(
     override val currentLocation =
         Transformations.map(weatherDao.getCurrentWeatherLocation()) { location ->
             location?.let {
-                val formatter = DateTimeFormatter.ofPattern("EEE dd MMMM yyyy")
+                val formatter = DateTimeFormatter.ofPattern("EEE dd MMMM yyyy", Locale.ENGLISH)
                 val date = LocalDate.ofEpochDay(location.localtimeEpoch / 86400000L)
                 location.copy(localtime = date.format(formatter))
             }

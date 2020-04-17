@@ -38,6 +38,10 @@ class WeatherFragment : Fragment() {
         viewModel.currentWeather.observe(viewLifecycleOwner, Observer { weather ->
             weather?.let {
                 binding.weather = weather
+                binding.humidityText.text = "${weather.humidity}%"
+                binding.pressureText.text = "${weather.pressure} Pa"
+                binding.windSpeedText.text = "${weather.windSpeed} mph"
+                binding.weatherText.text = "${weather.temperature}º"
             }
         })
 
