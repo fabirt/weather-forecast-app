@@ -9,7 +9,7 @@
         android:id="@+id/weatherFragment"
         android:name="com.fabirt.weatherforecast.presentation.weather.WeatherFragment"
         android:label="weather_fragment"
-        tools:layout="@layout/weather_fragment" >
+        tools:layout="@layout/fragment_weather" >
         <action
             android:id="@+id/action_weatherFragment_to_futureWeatherFragment"
             app:destination="@id/futureWeatherFragment"
@@ -29,7 +29,7 @@
         android:id="@+id/futureWeatherFragment"
         android:name="com.fabirt.weatherforecast.presentation.futureweather.FutureWeatherFragment"
         android:label="future_weather_fragment"
-        tools:layout="@layout/future_weather_fragment" >
+        tools:layout="@layout/fragment_future_weather" >
         <action
             android:id="@+id/action_futureWeatherFragment_to_weatherFragment"
             app:destination="@id/weatherFragment"
@@ -53,7 +53,7 @@
         android:id="@+id/settingsFragment"
         android:name="com.fabirt.weatherforecast.presentation.settings.SettingsFragment"
         android:label="settings_fragment"
-        tools:layout="@layout/settings_fragment" >
+        tools:layout="@layout/fragment_settings" >
         <action
             android:id="@+id/action_settingsFragment_to_weatherFragment"
             app:destination="@id/weatherFragment"

@@ -1,5 +1,7 @@
 package com.fabirt.weatherforecast.data.network
 
+import com.fabirt.weatherforecast.data.models.WeatherData
+import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import kotlinx.coroutines.Deferred
 import okhttp3.Interceptor
@@ -9,12 +11,15 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
+private const val BASE_URL = "http://api.weatherstack.com/"
+private const val API_KEY = "0d3eb4c2c9a79e4e5d7df7a4302b39cc"
+
 interface WeatherApiService {
-    @GET("current.json")
+    @GET("current")
     fun getCurrentWeather(
-        @Query("q") location: String,
-        @Query("lang") languageCode: String = "en"
-    ): Deferred<Any>
+        @Query("query") location: String,
+        @Query("language") languageCode: String = "en"
+    ): Deferred<WeatherData>
 
     companion object {
         operator fun invoke(): WeatherApiService {
@@ -22,7 +27,7 @@ interface WeatherApiService {
                 val url = chain.request()
                     .url()
                     .newBuilder()
-                    .addQueryParameter("key", "API_KEY")
+                    .addQueryParameter("access_key", API_KEY)
                     .build()
 
                 val request = chain.request()
@@ -39,7 +44,7 @@ interface WeatherApiService {
 
             return Retrofit.Builder()
                 .client(httpClient)
-                .baseUrl("baseUrl.com")
+                .baseUrl(BASE_URL)
                 .addCallAdapterFactory(CoroutineCallAdapterFactory())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()

@@ -1,20 +1,18 @@
 package com.fabirt.weatherforecast.presentation.weather
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 
 import com.fabirt.weatherforecast.R
-import com.google.android.material.*
+import com.fabirt.weatherforecast.databinding.FragmentWeatherBinding
 
 class WeatherFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = WeatherFragment()
-    }
 
     private lateinit var viewModel: WeatherViewModel
 
@@ -22,13 +20,15 @@ class WeatherFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.weather_fragment, container, false)
-    }
+        val binding = FragmentWeatherBinding.inflate(inflater, container, false)
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(WeatherViewModel::class.java)
-        // TODO: Use the ViewModel
+
+        viewModel.currentWeather.observe(viewLifecycleOwner, Observer { data ->
+            binding.weather = viewModel.currentWeather.value
+        })
+
+        return binding.root
     }
 
 }
