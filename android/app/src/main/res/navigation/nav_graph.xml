@@ -9,15 +9,68 @@
         android:id="@+id/weatherFragment"
         android:name="com.fabirt.weatherforecast.presentation.weather.WeatherFragment"
         android:label="weather_fragment"
-        tools:layout="@layout/weather_fragment" />
+        tools:layout="@layout/weather_fragment" >
+        <action
+            android:id="@+id/action_weatherFragment_to_futureWeatherFragment"
+            app:destination="@id/futureWeatherFragment"
+            app:enterAnim="@anim/fade_through"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@anim/fade_through"
+            app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_weatherFragment_to_settingsFragment2"
+            app:destination="@id/settingsFragment"
+            app:enterAnim="@anim/fade_through"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@anim/fade_through"
+            app:popExitAnim="@android:anim/fade_out" />
+    </fragment>
     <fragment
         android:id="@+id/futureWeatherFragment"
         android:name="com.fabirt.weatherforecast.presentation.futureweather.FutureWeatherFragment"
         android:label="future_weather_fragment"
-        tools:layout="@layout/future_weather_fragment" />
+        tools:layout="@layout/future_weather_fragment" >
+        <action
+            android:id="@+id/action_futureWeatherFragment_to_weatherFragment"
+            app:destination="@id/weatherFragment"
+            app:enterAnim="@anim/fade_through"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@anim/fade_through"
+            app:popExitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/weatherFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_futureWeatherFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment"
+            app:enterAnim="@anim/fade_through"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@anim/fade_through"
+            app:popExitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/weatherFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.fabirt.weatherforecast.presentation.settings.SettingsFragment"
         android:label="settings_fragment"
-        tools:layout="@layout/settings_fragment" />
+        tools:layout="@layout/settings_fragment" >
+        <action
+            android:id="@+id/action_settingsFragment_to_weatherFragment"
+            app:destination="@id/weatherFragment"
+            app:enterAnim="@anim/fade_through"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@anim/fade_through"
+            app:popExitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/weatherFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_settingsFragment_to_futureWeatherFragment"
+            app:destination="@id/futureWeatherFragment"
+            app:enterAnim="@anim/fade_through"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@anim/fade_through"
+            app:popExitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/weatherFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
 </navigation>

@@ -1,6 +1,5 @@
 package com.fabirt.weatherforecast.presentation.weather
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 
 import com.fabirt.weatherforecast.R
+import com.google.android.material.*
 
 class WeatherFragment : Fragment() {
 
