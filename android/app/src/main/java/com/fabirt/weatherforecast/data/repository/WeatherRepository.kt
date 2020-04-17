@@ -1,7 +1,12 @@
 package com.fabirt.weatherforecast.data.repository
 
+import androidx.lifecycle.LiveData
+import com.fabirt.weatherforecast.data.models.CurrentWeather
 import com.fabirt.weatherforecast.data.models.WeatherData
+import com.fabirt.weatherforecast.data.models.WeatherLocation
 
 interface WeatherRepository {
-    suspend fun getCurrentWeather(): WeatherData
+    val currentWeather: LiveData<CurrentWeather?>
+    val currentLocation: LiveData<WeatherLocation?>
+    suspend fun fetchCurrentWeather()
 }

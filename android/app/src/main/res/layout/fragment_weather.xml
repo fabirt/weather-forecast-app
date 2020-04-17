@@ -5,7 +5,10 @@
     <data>
         <variable
             name="weather"
-            type="com.fabirt.weatherforecast.data.models.WeatherData" />
+            type="com.fabirt.weatherforecast.data.models.CurrentWeather" />
+        <variable
+            name="location"
+            type="com.fabirt.weatherforecast.data.models.WeatherLocation" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -21,7 +24,7 @@
             android:drawablePadding="5dp"
             android:fontFamily="@font/helvetica_neu_bold"
             android:gravity="center"
-            android:text="@{weather.location.name}"
+            android:text="@{location.name}"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -33,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="@{weather.location.localtime}"
+            android:text="@{location.localtime}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/locationText" />

@@ -1,8 +1,12 @@
 package com.fabirt.weatherforecast.data.models
 
-
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+const val CURRENT_WEATHER_LOCATION_ID = 0
+
+@Entity(tableName = "weather_location")
 data class WeatherLocation(
     @SerializedName("country")
     val country: String,
@@ -22,4 +26,7 @@ data class WeatherLocation(
     val timezoneId: String,
     @SerializedName("utc_offset")
     val utcOffset: String
-)
+) {
+    @PrimaryKey(autoGenerate = false)
+    var id: Int = CURRENT_WEATHER_LOCATION_ID
+}

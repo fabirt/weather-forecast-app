@@ -12,14 +12,14 @@ data class WeatherData(
     val request: WeatherRequest
 ) {
     companion object {
+        // weatherIcons = listOf("https://assets.weatherstack.com/images/wsymbols01_png_64/wsymbol_0001_sunny.png"),
+        // weatherDescriptions = listOf("Sunny"),
         fun getFixed(): WeatherData {
             return WeatherData(
                 CurrentWeather(
                     observationTime = "12:14 PM",
                     temperature = 13,
                     weatherCode = 113,
-                    weatherIcons = listOf("https://assets.weatherstack.com/images/wsymbols01_png_64/wsymbol_0001_sunny.png"),
-                    weatherDescriptions = listOf("Sunny"),
                     windSpeed = 0,
                     windDegree = 349,
                     windDir = "N",
