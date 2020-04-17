@@ -3,7 +3,7 @@
     <color name="colorPrimary">#F7F7F7</color>
     <color name="colorPrimaryDark">#263144</color>
     <color name="colorAccent">#516DFF</color>
-    <color name="colorAccentRipple">#20516DFF</color>
+    <color name="colorAccentRipple">#10516DFF</color>
     <color name="colorBackground">#F7F7F7</color>
     <color name="colorSurface">#FFFFFF</color>
 </resources>
