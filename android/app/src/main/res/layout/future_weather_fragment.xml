@@ -7,12 +7,17 @@
     tools:context=".presentation.futureweather.FutureWeatherFragment">
 
     <TextView
+        android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
-        android:padding="24dp"
-        android:text="This week"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="100dp"
+        android:drawableStart="@drawable/ic_event_note_black_24dp"
+        android:drawablePadding="5dp"
+        android:fontFamily="@font/helvetica_neu_bold"
+        android:gravity="center"
+        android:text="Weekly summary"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
