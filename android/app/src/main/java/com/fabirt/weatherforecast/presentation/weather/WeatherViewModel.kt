@@ -25,7 +25,7 @@ class WeatherViewModel(private val repository: WeatherRepository) : ViewModel() 
         getCurrenWeather()
     }
 
-    private fun getCurrenWeather() {
+    fun getCurrenWeather() {
         viewModelScope.launch {
             repository.fetchCurrentWeather()
         }
