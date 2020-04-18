@@ -57,7 +57,7 @@ class WeatherFragment : Fragment() {
                 binding.humidityText.text = "${it.humidity}%"
                 binding.pressureText.text = "${it.pressure} mb"
                 binding.windSpeedText.text = "${it.windSpeed} km/h"
-                binding.weatherText.text = "${it.temperature}º"
+                binding.temperatureText.text = "${it.temperature}º"
                 binding.realFeelText.text = "${it.feelslike}º"
                 binding.windDirectionText.text = it.windDir
                 binding.visibilityText.text = "${it.visibility} km"
