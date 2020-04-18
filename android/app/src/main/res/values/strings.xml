@@ -12,4 +12,11 @@
     <string name="pressure_label">Pressure</string>
     <string name="wind_direction_label">Wind direction</string>
     <string name="visibility_label">Visibility</string>
+    <string name="settings_title">SETTINGS</string>
+    <string name="about_title">ABOUT</string>
+    <string name="about_text_content">
+        \u0020Version: 0.0.1\n
+        Developers: Fandig\n
+        Design: Group 20 - UI design 2019 Course\n
+        Weather Info: Powered by Weatherstack API </string>
 </resources>

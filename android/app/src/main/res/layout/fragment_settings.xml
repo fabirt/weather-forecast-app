@@ -8,33 +8,41 @@
     tools:context=".presentation.settings.SettingsFragment">
 
     <TextView
-        android:id="@+id/textView5"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:id="@+id/settingsTitleLabel"
+        style="@style/SettingsTitleTextStyle"
         android:layout_marginStart="32dp"
         android:layout_marginTop="100dp"
         android:layout_marginEnd="32dp"
-        android:fontFamily="@font/helvetica_neu_bold"
-        android:text="SETTINGS"
-        android:textSize="18sp"
+        android:text="@string/settings_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:id="@+id/aboutTitleLabel"
+        style="@style/SettingsTitleTextStyle"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
-        android:fontFamily="@font/helvetica_neu_bold"
-        android:text="ABOUT"
-        android:textSize="18sp"
+        android:text="@string/about_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/settingsTitleLabel" />
+
+    <TextView
+        android:id="@+id/aboutTextContent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="32dp"
+        android:fontFamily="@font/helvetica_neue_medium"
+        android:text="@string/about_text_content"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/aboutTitleLabel" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
