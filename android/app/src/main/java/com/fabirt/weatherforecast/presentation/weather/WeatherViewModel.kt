@@ -15,7 +15,7 @@ class WeatherViewModel(private val repository: WeatherRepository) : ViewModel() 
     val currentLocation = repository.currentLocation
 
     init {
-        getCurrenWeather()
+        // getCurrenWeather()
     }
 
     fun getCurrenWeather() {

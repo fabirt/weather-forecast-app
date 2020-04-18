@@ -4,7 +4,6 @@ import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Location
-import android.util.Log
 import androidx.core.content.ContextCompat
 import com.fabirt.weatherforecast.core.error.LatestLocationNotFoundException
 import com.fabirt.weatherforecast.core.error.LocationPermissionNotGrantedException
@@ -20,9 +19,7 @@ class LocationProviderImpl(
     override suspend fun getPreferredLocationString(): String {
         val location =
             getLastDeviceLocationAsync().await() ?: throw LatestLocationNotFoundException()
-        Log.i("LocationProviderImpl", "${location.latitude},${location.longitude}")
         return "${location.latitude},${location.longitude}"
-
     }
 
     private fun getLastDeviceLocationAsync(): Deferred<Location?> {
@@ -31,7 +28,6 @@ class LocationProviderImpl(
         } else {
             throw LocationPermissionNotGrantedException()
         }
-
     }
 
     private fun hasLocationPermission(): Boolean {

@@ -36,21 +36,15 @@ class WeatherRepositoryImpl(
     override suspend fun fetchCurrentWeather() {
         try {
             withContext(Dispatchers.IO) {
-                Log.i("WeatherRepositoryImpl", "fetchCurrentWeather")
                 val location = locationProvider.getPreferredLocationString()
                 if (updateTimeProvider.isCurrentWeatherUpdateNeeded()) {
-                    Log.i("WeatherRepositoryImpl", "isCurrentWeatherUpdateNeeded")
-                    Log.i("WeatherRepositoryImpl", location)
                     val weatherResponse = weatherService.getCurrentWeatherAsync(location, "").await()
-                    Log.i("WeatherRepositoryImpl", weatherResponse.toString())
                     weatherDao.upsertCurrentWeather(weatherResponse.currentWeather.asDomainEntity())
                     weatherDao.upsertCurrentWeatherLocation(weatherResponse.location)
                     updateTimeProvider.setLatestUpdateTime(System.currentTimeMillis())
                 }
             }
         } catch (e: Exception) {
-            Log.i("WeatherRepositoryImpl", e.message.toString())
-
         }
     }
 }
