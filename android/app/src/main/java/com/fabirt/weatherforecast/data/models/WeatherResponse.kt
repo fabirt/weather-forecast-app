@@ -1,11 +1,10 @@
 package com.fabirt.weatherforecast.data.models
 
-
 import com.google.gson.annotations.SerializedName
 
-data class WeatherData(
+data class WeatherResponse(
     @SerializedName("current")
-    val currentWeather: CurrentWeather,
+    val currentWeather: CurrentWeatherModel,
     @SerializedName("location")
     val location: WeatherLocation,
     @SerializedName("request")
@@ -14,9 +13,9 @@ data class WeatherData(
     companion object {
         // weatherIcons = listOf("https://assets.weatherstack.com/images/wsymbols01_png_64/wsymbol_0001_sunny.png"),
         // weatherDescriptions = listOf("Sunny"),
-        fun getFixed(): WeatherData {
-            return WeatherData(
-                CurrentWeather(
+        fun getFixed(): WeatherResponse {
+            return WeatherResponse(
+                CurrentWeatherModel(
                     observationTime = "12:14 PM",
                     temperature = 13,
                     weatherCode = 113,
@@ -29,7 +28,8 @@ data class WeatherData(
                     cloudcover = 0,
                     feelslike = 13,
                     uvIndex = 4,
-                    visibility = 16
+                    visibility = 16,
+                    weatherDescriptions = listOf("Description")
                 ),
                 WeatherLocation(
                     name = "New York",

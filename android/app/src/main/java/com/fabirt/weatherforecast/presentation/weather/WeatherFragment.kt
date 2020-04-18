@@ -61,6 +61,7 @@ class WeatherFragment : Fragment() {
                 binding.realFeelText.text = "${it.feelslike}º"
                 binding.windDirectionText.text = it.windDir
                 binding.visibilityText.text = "${it.visibility} km"
+                binding.weatherDescriptionText.text = it.weatherDescription
             }
         })
 
@@ -80,11 +81,6 @@ class WeatherFragment : Fragment() {
             arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION),
             LOCATION_PERMISSION_REQUEST_CODE
         )
-    }
-
-    override fun onResume() {
-        super.onResume()
-        viewModel.getCurrenWeather()
     }
 
     override fun onRequestPermissionsResult(

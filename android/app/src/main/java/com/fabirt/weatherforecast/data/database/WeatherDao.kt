@@ -7,7 +7,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.fabirt.weatherforecast.core.constants.CURRENT_WEATHER_ID
 import com.fabirt.weatherforecast.core.constants.CURRENT_WEATHER_LOCATION_ID
-import com.fabirt.weatherforecast.data.models.CurrentWeather
+import com.fabirt.weatherforecast.domain.entities.CurrentWeather
 import com.fabirt.weatherforecast.data.models.WeatherLocation
 
 @Dao

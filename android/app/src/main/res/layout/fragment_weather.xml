@@ -7,7 +7,7 @@
 
         <variable
             name="weather"
-            type="com.fabirt.weatherforecast.data.models.CurrentWeather" />
+            type="com.fabirt.weatherforecast.domain.entities.CurrentWeather" />
 
         <variable
             name="location"
@@ -116,12 +116,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/helvetica_neue_medium"
-                android:text="Overcast"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/weatherIndicatorImage"
-                app:layout_constraintTop_toBottomOf="@+id/weatherIndicatorImage" />
+                app:layout_constraintTop_toBottomOf="@+id/weatherIndicatorImage"
+                tools:text="Overcast" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
@@ -141,7 +141,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="72dp"
+            android:layout_marginTop="54dp"
             android:fontFamily="@font/helvetica_neue_medium"
             android:text="Humidity"
             android:textColor="@color/colorPrimaryDark"

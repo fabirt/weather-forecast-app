@@ -1,7 +1,7 @@
 package com.fabirt.weatherforecast.data.network
 
-import com.fabirt.weatherforecast.data.models.WeatherData
-import com.google.gson.GsonBuilder
+import android.util.Log
+import com.fabirt.weatherforecast.data.models.WeatherResponse
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import kotlinx.coroutines.Deferred
 import okhttp3.Interceptor
@@ -16,10 +16,10 @@ private const val API_KEY = "0d3eb4c2c9a79e4e5d7df7a4302b39cc"
 
 interface WeatherApiService {
     @GET("current")
-    fun getCurrentWeather(
+    fun getCurrentWeatherAsync(
         @Query("query") location: String,
-        @Query("language") languageCode: String = "en"
-    ): Deferred<WeatherData>
+        @Query("language") languageCode: String
+    ): Deferred<WeatherResponse>
 
     companion object {
         operator fun invoke(): WeatherApiService {

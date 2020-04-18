@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.fabirt.weatherforecast.data.models.CurrentWeather
+import com.fabirt.weatherforecast.domain.entities.CurrentWeather
 import com.fabirt.weatherforecast.data.models.WeatherLocation
 
 private lateinit var instance: WeatherDatabase

@@ -1,14 +1,14 @@
 package com.fabirt.weatherforecast.data.repository
 
+import android.util.Log
 import androidx.lifecycle.Transformations
+import com.fabirt.weatherforecast.core.extensions.asDomainEntity
 import com.fabirt.weatherforecast.data.database.WeatherDao
-import com.fabirt.weatherforecast.data.models.WeatherData
 import com.fabirt.weatherforecast.data.network.WeatherApiService
 import com.fabirt.weatherforecast.data.providers.LocationProvider
 import com.fabirt.weatherforecast.data.providers.UpdateTimeProvider
 import com.fabirt.weatherforecast.domain.repository.WeatherRepository
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 import org.threeten.bp.LocalDate
 import org.threeten.bp.format.DateTimeFormatter
@@ -28,25 +28,28 @@ class WeatherRepositoryImpl(
         Transformations.map(weatherDao.getCurrentWeatherLocation()) { location ->
             location?.let {
                 val formatter = DateTimeFormatter.ofPattern("EEE dd MMMM yyyy", Locale.ENGLISH)
-                val date = LocalDate.ofEpochDay(location.localtimeEpoch / 86400000L)
+                val date = LocalDate.ofEpochDay(location.localtimeEpoch / 86400L)
                 location.copy(localtime = date.format(formatter))
             }
         }
 
     override suspend fun fetchCurrentWeather() {
-        val fixedData = WeatherData.getFixed()
         try {
             withContext(Dispatchers.IO) {
+                Log.i("WeatherRepositoryImpl", "fetchCurrentWeather")
                 val location = locationProvider.getPreferredLocationString()
                 if (updateTimeProvider.isCurrentWeatherUpdateNeeded()) {
-                    delay(1000)
-                    // val weatherData = weatherService.getCurrentWeather(location")
-                    weatherDao.upsertCurrentWeather(fixedData.currentWeather)
-                    weatherDao.upsertCurrentWeatherLocation(fixedData.location)
+                    Log.i("WeatherRepositoryImpl", "isCurrentWeatherUpdateNeeded")
+                    Log.i("WeatherRepositoryImpl", location)
+                    val weatherResponse = weatherService.getCurrentWeatherAsync(location, "").await()
+                    Log.i("WeatherRepositoryImpl", weatherResponse.toString())
+                    weatherDao.upsertCurrentWeather(weatherResponse.currentWeather.asDomainEntity())
+                    weatherDao.upsertCurrentWeatherLocation(weatherResponse.location)
                     updateTimeProvider.setLatestUpdateTime(System.currentTimeMillis())
                 }
             }
         } catch (e: Exception) {
+            Log.i("WeatherRepositoryImpl", e.message.toString())
 
         }
     }
