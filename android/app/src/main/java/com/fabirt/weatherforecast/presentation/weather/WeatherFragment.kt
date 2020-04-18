@@ -57,12 +57,14 @@ class WeatherFragment : Fragment() {
                 binding.pressureText.text = "${weather.pressure} Pa"
                 binding.windSpeedText.text = "${weather.windSpeed} mph"
                 binding.weatherText.text = "${weather.temperature}º"
+                binding.realFeelText.text = "${weather.feelslike}º"
             }
         })
 
         viewModel.currentLocation.observe(viewLifecycleOwner, Observer { location ->
             location?.let {
                 binding.location = location
+                binding.locationText.text = location.name
             }
         })
 
