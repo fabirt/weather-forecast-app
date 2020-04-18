@@ -21,7 +21,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
-        versionName "1.0"
+        versionName "0.0.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -36,6 +36,16 @@ android {
     // Enables data binding.
     dataBinding {
         enabled = true
+    }
+
+    flavorDimensions 'environment'
+    productFlavors {
+        dev {
+            dimension = 'environment'
+            // buildConfigField <Type>, <Name>, <Value>
+            buildConfigField "String", "BASE_URL", '"http://api.weatherstack.com/"'
+            buildConfigField "String", "ACCESS_KEY", '"0d3eb4c2c9a79e4e5d7df7a4302b39cc"'
+        }
     }
 
 }
@@ -81,7 +91,7 @@ dependencies {
     // Better dateTime-time support even on older Android versions
     implementation "com.jakewharton.threetenabp:threetenabp:1.1.0"
 
-    // WeatherLocation
+    // Location services
     implementation "com.google.android.gms:play-services-location:17.0.0"
 
     testImplementation 'junit:junit:4.12'
