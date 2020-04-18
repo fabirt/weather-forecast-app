@@ -1,14 +1,10 @@
 package com.fabirt.weatherforecast.data.repository
 
-import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.fabirt.weatherforecast.data.database.WeatherDao
-import com.fabirt.weatherforecast.data.database.getDatabase
-import com.fabirt.weatherforecast.data.models.CurrentWeather
 import com.fabirt.weatherforecast.data.models.WeatherData
-import com.fabirt.weatherforecast.data.models.WeatherLocation
 import com.fabirt.weatherforecast.data.network.WeatherApiService
+import com.fabirt.weatherforecast.data.providers.UpdateTimeProvider
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
@@ -19,6 +15,7 @@ import java.util.*
 
 class WeatherRepositoryImpl(
     private val weatherService: WeatherApiService,
+    private val updateTimeProvider: UpdateTimeProvider,
     private val weatherDao: WeatherDao
 ) : WeatherRepository {
 
@@ -37,13 +34,16 @@ class WeatherRepositoryImpl(
         val fixedData = WeatherData.getFixed()
         try {
             withContext(Dispatchers.IO) {
-                delay(1000)
-                weatherDao.upsertCurrentWeather(fixedData.currentWeather)
-                weatherDao.upsertCurrentWeatherLocation(fixedData.location)
+                if (updateTimeProvider.isCurrentWeatherUpdateNeeded()) {
+                    delay(1000)
+                    // val weatherData = weatherService.getCurrentWeather("Barranquilla")
+                    weatherDao.upsertCurrentWeather(fixedData.currentWeather)
+                    weatherDao.upsertCurrentWeatherLocation(fixedData.location)
+                    updateTimeProvider.setLatestUpdateTime(System.currentTimeMillis())
+                }
             }
         } catch (e: Exception) {
-            weatherDao.upsertCurrentWeather(fixedData.currentWeather)
-            weatherDao.upsertCurrentWeatherLocation(fixedData.location)
-         }
+
+        }
     }
 }

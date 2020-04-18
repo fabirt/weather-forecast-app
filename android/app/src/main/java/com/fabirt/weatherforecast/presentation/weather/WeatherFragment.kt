@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.fabirt.weatherforecast.R
 import com.fabirt.weatherforecast.data.database.getDatabase
 import com.fabirt.weatherforecast.data.network.WeatherApiService
+import com.fabirt.weatherforecast.data.providers.UpdateTimeProvider
 import com.fabirt.weatherforecast.data.repository.WeatherRepositoryImpl
 import com.fabirt.weatherforecast.databinding.FragmentWeatherBinding
 
@@ -27,9 +28,15 @@ class WeatherFragment : Fragment() {
 
         val weatherApiService = WeatherApiService()
 
-        val weatherDatabase = getDatabase(context!!)
+        val updateTimeProvider = UpdateTimeProvider(requireContext())
 
-        val weatherRepository = WeatherRepositoryImpl(weatherApiService, weatherDatabase.weatherDao)
+        val weatherDatabase = getDatabase(requireContext())
+
+        val weatherRepository = WeatherRepositoryImpl(
+            weatherService = weatherApiService,
+            updateTimeProvider = updateTimeProvider,
+            weatherDao = weatherDatabase.weatherDao
+        )
 
         val viewModelFactory = WeatherViewModelFactory(weatherRepository)
 
