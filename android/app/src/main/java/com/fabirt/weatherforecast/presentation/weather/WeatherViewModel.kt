@@ -1,19 +1,11 @@
 package com.fabirt.weatherforecast.presentation.weather
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import com.fabirt.weatherforecast.data.database.getDatabase
-import com.fabirt.weatherforecast.data.models.WeatherData
-import com.fabirt.weatherforecast.data.repository.WeatherRepository
-import com.fabirt.weatherforecast.data.repository.WeatherRepositoryImpl
+import com.fabirt.weatherforecast.domain.repository.WeatherRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import org.threeten.bp.LocalDate
-import org.threeten.bp.format.DateTimeFormatter
 
 class WeatherViewModel(private val repository: WeatherRepository) : ViewModel() {
     private val viewModelJob = Job()

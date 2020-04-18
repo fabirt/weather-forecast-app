@@ -2,7 +2,7 @@ package com.fabirt.weatherforecast.presentation.weather
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.fabirt.weatherforecast.data.repository.WeatherRepository
+import com.fabirt.weatherforecast.domain.repository.WeatherRepository
 
 class WeatherViewModelFactory(private val weatherRepository: WeatherRepository) :
     ViewModelProvider.Factory {

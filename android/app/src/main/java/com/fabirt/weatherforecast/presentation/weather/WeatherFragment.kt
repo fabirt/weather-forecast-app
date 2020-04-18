@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 
 import com.fabirt.weatherforecast.R
+import com.fabirt.weatherforecast.core.constants.LOCATION_PERMISSION_REQUEST_CODE
 import com.fabirt.weatherforecast.data.database.getDatabase
 import com.fabirt.weatherforecast.data.network.WeatherApiService
 import com.fabirt.weatherforecast.data.providers.LocationProviderImpl
@@ -73,7 +74,10 @@ class WeatherFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        requestPermissions(arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION), 1)
+        requestPermissions(
+            arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION),
+            LOCATION_PERMISSION_REQUEST_CODE
+        )
     }
 
     override fun onRequestPermissionsResult(
@@ -82,7 +86,7 @@ class WeatherFragment : Fragment() {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == 1) {
+        if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
             if (grantResults.isNotEmpty() && grantResults.first() == PackageManager.PERMISSION_GRANTED) {
                 viewModel.getCurrenWeather()
             }

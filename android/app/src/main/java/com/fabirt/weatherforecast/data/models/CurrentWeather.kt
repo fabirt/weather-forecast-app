@@ -3,9 +3,8 @@ package com.fabirt.weatherforecast.data.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.fabirt.weatherforecast.core.constants.CURRENT_WEATHER_ID
 import com.google.gson.annotations.SerializedName
-
-const val CURRENT_WEATHER_ID = 0
 
 @Entity(tableName = "current_weather")
 data class CurrentWeather(

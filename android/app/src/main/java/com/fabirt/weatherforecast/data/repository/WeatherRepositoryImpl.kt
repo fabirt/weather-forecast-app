@@ -6,6 +6,7 @@ import com.fabirt.weatherforecast.data.models.WeatherData
 import com.fabirt.weatherforecast.data.network.WeatherApiService
 import com.fabirt.weatherforecast.data.providers.LocationProvider
 import com.fabirt.weatherforecast.data.providers.UpdateTimeProvider
+import com.fabirt.weatherforecast.domain.repository.WeatherRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext

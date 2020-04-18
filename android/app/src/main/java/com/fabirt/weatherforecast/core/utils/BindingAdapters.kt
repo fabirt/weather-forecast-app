@@ -1,4 +1,4 @@
-package com.fabirt.weatherforecast.core
+package com.fabirt.weatherforecast.core.utils
 
 import android.view.View
 import androidx.databinding.BindingAdapter

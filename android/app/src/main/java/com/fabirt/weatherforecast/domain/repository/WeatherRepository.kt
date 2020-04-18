@@ -1,4 +1,4 @@
-package com.fabirt.weatherforecast.data.repository
+package com.fabirt.weatherforecast.domain.repository
 
 import androidx.lifecycle.LiveData
 import com.fabirt.weatherforecast.data.models.CurrentWeather

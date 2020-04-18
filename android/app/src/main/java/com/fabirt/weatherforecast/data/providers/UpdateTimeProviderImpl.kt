@@ -2,8 +2,7 @@ package com.fabirt.weatherforecast.data.providers
 
 import android.content.Context
 import android.util.Log
-
-private const val LAST_UPDATED_TIME_KEY = "LAST_UPDATED_TIME_KEY"
+import com.fabirt.weatherforecast.core.constants.LAST_UPDATED_TIME_KEY
 
 class UpdateTimeProviderImpl(context: Context) : PreferencesProvider(context), UpdateTimeProvider {
 
@@ -24,14 +23,9 @@ class UpdateTimeProviderImpl(context: Context) : PreferencesProvider(context), U
      * Returns true if the latest stored time was at least 6 hours ago.
      */
     override fun isCurrentWeatherUpdateNeeded(): Boolean {
-        Log.i("UpdateTimeProvider", "isCurrentWeatherUpdateNeeded called")
         val latestTime = getLatestUpdateTime()
-        Log.i("UpdateTimeProvider", "latestTime $latestTime")
         val currentTime = System.currentTimeMillis()
-        Log.i("UpdateTimeProvider", "currentTime $currentTime")
         val requiredDiff = 2.16e7
-        Log.i("UpdateTimeProvider", "diff ${currentTime - latestTime}")
-        Log.i("UpdateTimeProvider", "return exp ${currentTime - latestTime > requiredDiff}")
         return currentTime - latestTime > requiredDiff
     }
 }

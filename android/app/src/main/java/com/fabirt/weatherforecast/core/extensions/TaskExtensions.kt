@@ -1,4 +1,4 @@
-package com.fabirt.weatherforecast.core
+package com.fabirt.weatherforecast.core.extensions
 
 import com.google.android.gms.tasks.Task
 import kotlinx.coroutines.CompletableDeferred
