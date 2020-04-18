@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="weather"
             type="com.fabirt.weatherforecast.data.models.CurrentWeather" />
@@ -127,12 +128,11 @@
             android:id="@+id/humidityText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
             android:fontFamily="@font/helvetica_neue_medium"
             app:goneIfNull="@{weather}"
             app:layout_constraintBottom_toBottomOf="@+id/humidityLabel"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/humidityLabel"
+            app:layout_constraintEnd_toEndOf="@+id/weatherCardLayout"
             app:layout_constraintTop_toTopOf="@+id/humidityLabel"
             tools:text="65%" />
 
@@ -140,29 +140,26 @@
             android:id="@+id/humidityLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="72dp"
             android:fontFamily="@font/helvetica_neue_medium"
             android:text="Humidity"
             android:textColor="@color/colorPrimaryDark"
             app:goneIfNull="@{weather}"
-            app:layout_constraintBottom_toTopOf="@+id/windSpeedLabel"
-            app:layout_constraintEnd_toStartOf="@+id/humidityText"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/weatherCardLayout"
             app:layout_constraintTop_toBottomOf="@+id/weatherCardLayout" />
 
         <TextView
             android:id="@+id/windSpeedLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
             android:fontFamily="@font/helvetica_neue_medium"
             android:text="Wind speed"
             android:textColor="@color/colorPrimaryDark"
             app:goneIfNull="@{weather}"
-            app:layout_constraintBottom_toTopOf="@+id/pressureLabel"
-            app:layout_constraintEnd_toStartOf="@+id/windSpeedText"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/humidityLabel" />
+            app:layout_constraintStart_toStartOf="@+id/humidityLabel"
+            app:layout_constraintTop_toBottomOf="@+id/windDirectionLabel" />
 
         <TextView
             android:id="@+id/windSpeedText"
@@ -171,9 +168,7 @@
             android:fontFamily="@font/helvetica_neue_medium"
             app:goneIfNull="@{weather}"
             app:layout_constraintBottom_toBottomOf="@+id/windSpeedLabel"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/windSpeedLabel"
+            app:layout_constraintEnd_toEndOf="@+id/humidityText"
             app:layout_constraintTop_toTopOf="@+id/windSpeedLabel"
             tools:text="5.69 km/h" />
 
@@ -181,16 +176,13 @@
             android:id="@+id/pressureLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="64dp"
+            android:layout_marginTop="24dp"
             android:fontFamily="@font/helvetica_neue_medium"
             android:text="Pressure"
             android:textColor="@color/colorPrimaryDark"
             app:goneIfNull="@{weather}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/pressureText"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/windSpeedLabel" />
+            app:layout_constraintStart_toStartOf="@+id/humidityLabel"
+            app:layout_constraintTop_toBottomOf="@+id/humidityLabel" />
 
         <TextView
             android:id="@+id/pressureText"
@@ -199,9 +191,7 @@
             android:fontFamily="@font/helvetica_neue_medium"
             app:goneIfNull="@{weather}"
             app:layout_constraintBottom_toBottomOf="@+id/pressureLabel"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/pressureLabel"
+            app:layout_constraintEnd_toEndOf="@+id/humidityText"
             app:layout_constraintTop_toTopOf="@+id/pressureLabel"
             tools:text="1023 mb" />
 
@@ -214,11 +204,58 @@
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="64dp"
             android:src="@drawable/ic_undraw_season_change"
+            android:visibility="gone"
             app:goneIfNotNull="@{weather}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/dateTimeText" />
+
+        <TextView
+            android:id="@+id/windDirectionLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/helvetica_neue_medium"
+            android:text="Wind direction"
+            android:textColor="@color/colorPrimaryDark"
+            app:goneIfNull="@{weather}"
+            app:layout_constraintStart_toStartOf="@+id/humidityLabel"
+            app:layout_constraintTop_toBottomOf="@+id/pressureLabel" />
+
+        <TextView
+            android:id="@+id/windDirectionText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/helvetica_neue_medium"
+            app:goneIfNull="@{weather}"
+            app:layout_constraintBottom_toBottomOf="@+id/windDirectionLabel"
+            app:layout_constraintEnd_toEndOf="@+id/humidityText"
+            app:layout_constraintTop_toTopOf="@+id/windDirectionLabel"
+            tools:text="N" />
+
+        <TextView
+            android:id="@+id/visibilityLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/helvetica_neue_medium"
+            android:text="Visibility"
+            android:textColor="@color/colorPrimaryDark"
+            app:goneIfNull="@{weather}"
+            app:layout_constraintStart_toStartOf="@+id/humidityLabel"
+            app:layout_constraintTop_toBottomOf="@+id/windSpeedLabel" />
+
+        <TextView
+            android:id="@+id/visibilityText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/helvetica_neue_medium"
+            app:goneIfNull="@{weather}"
+            app:layout_constraintBottom_toBottomOf="@+id/visibilityLabel"
+            app:layout_constraintEnd_toEndOf="@+id/humidityText"
+            app:layout_constraintTop_toTopOf="@+id/visibilityLabel"
+            tools:text="0 km" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
