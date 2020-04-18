@@ -170,7 +170,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/windSpeedLabel"
             app:layout_constraintTop_toTopOf="@+id/windSpeedLabel"
-            tools:text="5.69 mph" />
+            tools:text="5.69 km/h" />
 
         <TextView
             android:id="@+id/pressureLabel"
@@ -196,7 +196,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/pressureLabel"
             app:layout_constraintTop_toTopOf="@+id/pressureLabel"
-            tools:text="1023 Pa" />
+            tools:text="1023 mb" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
