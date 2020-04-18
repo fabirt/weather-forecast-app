@@ -1,69 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".presentation.settings.SettingsFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/settingsTitleLabel"
-        style="@style/SettingsTitleTextStyle"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="32dp"
-        android:text="@string/settings_title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-    <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/locationPermissionSwitch"
-        style="@style/SwitchStyle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/location_permissions_label"
-        app:layout_constraintEnd_toEndOf="@+id/settingsTitleLabel"
-        app:layout_constraintStart_toStartOf="@+id/settingsTitleLabel"
-        app:layout_constraintTop_toBottomOf="@+id/settingsTitleLabel" />
+    </data>
 
-    <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/locationEnabledSwitch"
-        style="@style/SwitchStyle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/location_enabled_label"
-        app:layout_constraintEnd_toEndOf="@+id/settingsTitleLabel"
-        app:layout_constraintStart_toStartOf="@+id/settingsTitleLabel"
-        app:layout_constraintTop_toBottomOf="@+id/locationPermissionSwitch" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.settings.SettingsFragment">
 
-    <TextView
-        android:id="@+id/aboutTitleLabel"
-        style="@style/SettingsTitleTextStyle"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:text="@string/about_title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/locationEnabledSwitch" />
+        <TextView
+            android:id="@+id/settingsTitleLabel"
+            style="@style/SettingsTitleTextStyle"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="32dp"
+            android:text="@string/settings_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/aboutTextContent"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="32dp"
-        android:fontFamily="@font/helvetica_neue_medium"
-        android:text="@string/about_text_content"
-        android:textColor="@color/colorPrimaryDark"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/aboutTitleLabel" />
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/locationPermissionSwitch"
+            style="@style/SwitchStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/location_permissions_label"
+            app:layout_constraintEnd_toEndOf="@+id/settingsTitleLabel"
+            app:layout_constraintStart_toStartOf="@+id/settingsTitleLabel"
+            app:layout_constraintTop_toBottomOf="@+id/settingsTitleLabel" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/locationEnabledSwitch"
+            style="@style/SwitchStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/location_enabled_label"
+            app:layout_constraintEnd_toEndOf="@+id/settingsTitleLabel"
+            app:layout_constraintStart_toStartOf="@+id/settingsTitleLabel"
+            app:layout_constraintTop_toBottomOf="@+id/locationPermissionSwitch" />
 
+        <TextView
+            android:id="@+id/aboutTitleLabel"
+            style="@style/SettingsTitleTextStyle"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:text="@string/about_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/locationEnabledSwitch" />
+
+        <TextView
+            android:id="@+id/aboutTextContent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="@font/helvetica_neue_medium"
+            android:text="@string/about_text_content"
+            android:textColor="@color/colorPrimaryDark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/aboutTitleLabel" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
