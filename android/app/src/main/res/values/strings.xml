@@ -19,4 +19,6 @@
         Developers: Fandig\n
         Design: Group 20 - UI design 2019 Course\n
         Weather Info: Powered by Weatherstack API </string>
+    <string name="location_permissions_label">Location permissions</string>
+    <string name="location_enabled_label">Location enabled</string>
 </resources>
