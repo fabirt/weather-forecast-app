@@ -7,5 +7,14 @@ import com.fabirt.weatherforecast.data.models.WeatherLocation
 interface WeatherRepository {
     val currentWeather: LiveData<CurrentWeather?>
     val currentLocation: LiveData<WeatherLocation?>
-    suspend fun fetchCurrentWeather()
+
+    /**
+     *
+     */
+    suspend fun fetchCurrentWeatherRacionale()
+
+    /**
+     *
+     */
+    suspend fun fetchCurrentWeatherMandatory()
 }

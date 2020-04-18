@@ -1,6 +1,5 @@
 package com.fabirt.weatherforecast.data.repository
 
-import android.util.Log
 import androidx.lifecycle.Transformations
 import com.fabirt.weatherforecast.core.extensions.asDomainEntity
 import com.fabirt.weatherforecast.data.database.WeatherDao
@@ -12,7 +11,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.threeten.bp.LocalDate
 import org.threeten.bp.format.DateTimeFormatter
-import java.lang.Exception
 import java.util.*
 
 class WeatherRepositoryImpl(
@@ -33,18 +31,30 @@ class WeatherRepositoryImpl(
             }
         }
 
-    override suspend fun fetchCurrentWeather() {
+    override suspend fun fetchCurrentWeatherRacionale() {
         try {
             withContext(Dispatchers.IO) {
-                val location = locationProvider.getPreferredLocationString()
                 if (updateTimeProvider.isCurrentWeatherUpdateNeeded()) {
-                    val weatherResponse = weatherService.getCurrentWeatherAsync(location, "").await()
-                    weatherDao.upsertCurrentWeather(weatherResponse.currentWeather.asDomainEntity())
-                    weatherDao.upsertCurrentWeatherLocation(weatherResponse.location)
-                    updateTimeProvider.setLatestUpdateTime(System.currentTimeMillis())
+                    fetchCurrentWeather()
                 }
             }
         } catch (e: Exception) {
         }
+    }
+
+    override suspend fun fetchCurrentWeatherMandatory() {
+        try {
+            fetchCurrentWeather()
+        } catch (e: Exception) {
+
+        }
+    }
+
+    private suspend fun fetchCurrentWeather() {
+        val location = locationProvider.getPreferredLocationString()
+        val weatherResponse = weatherService.getCurrentWeatherAsync(location, "").await()
+        weatherDao.upsertCurrentWeather(weatherResponse.currentWeather.asDomainEntity())
+        weatherDao.upsertCurrentWeatherLocation(weatherResponse.location)
+        updateTimeProvider.setLatestUpdateTime(System.currentTimeMillis())
     }
 }

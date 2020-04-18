@@ -20,7 +20,7 @@ class WeatherViewModel(private val repository: WeatherRepository) : ViewModel() 
 
     fun getCurrenWeather() {
         viewModelScope.launch {
-            repository.fetchCurrentWeather()
+            repository.fetchCurrentWeatherRacionale()
         }
     }
 
