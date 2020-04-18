@@ -2,6 +2,7 @@ package com.fabirt.weatherforecast.presentation.weather
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.fabirt.weatherforecast.data.database.getDatabase
 import com.fabirt.weatherforecast.data.models.WeatherData

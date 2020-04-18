@@ -6,7 +6,7 @@ import android.content.pm.PackageManager
 import android.location.Location
 import android.util.Log
 import androidx.core.content.ContextCompat
-import com.fabirt.weatherforecast.core.asDeferred
+import com.fabirt.weatherforecast.core.asDeferredAsync
 import com.google.android.gms.location.FusedLocationProviderClient
 import kotlinx.coroutines.Deferred
 
@@ -22,13 +22,14 @@ class LocationProviderImpl(
             "${location.latitude},${location.longitude}"
         } catch (e: Exception) {
             Log.i("LocationProviderImpl", e.toString())
-            "Barranquilla"
+            // "Barranquilla"
+            throw e
         }
     }
 
     private fun getLastDeviceLocation(): Deferred<Location?> {
         return if (hasLocationPermission())
-            fusedLocationProviderClient.lastLocation.asDeferred()
+            fusedLocationProviderClient.lastLocation.asDeferredAsync()
         else
             throw Exception()
     }

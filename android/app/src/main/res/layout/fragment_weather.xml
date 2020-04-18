@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="weather"
             type="com.fabirt.weatherforecast.data.models.CurrentWeather" />
@@ -57,6 +56,7 @@
             android:layout_marginEnd="24dp"
             android:background="@drawable/weather_card_background"
             android:elevation="6dp"
+            app:goneIfNull="@{weather}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/dateTimeText">
@@ -104,6 +104,7 @@
                 android:layout_marginStart="6dp"
                 android:fontFamily="@font/helvetica_neue_medium"
                 android:text="18"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="12sp"
                 app:layout_constraintStart_toEndOf="@+id/realFeelLabel"
                 app:layout_constraintTop_toTopOf="@+id/realFeelLabel" />
@@ -127,6 +128,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/helvetica_neue_medium"
+            app:goneIfNull="@{weather}"
             app:layout_constraintBottom_toBottomOf="@+id/humidityLabel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -141,6 +143,7 @@
             android:fontFamily="@font/helvetica_neue_medium"
             android:text="Humidity"
             android:textColor="@color/colorPrimaryDark"
+            app:goneIfNull="@{weather}"
             app:layout_constraintBottom_toTopOf="@+id/windSpeedLabel"
             app:layout_constraintEnd_toStartOf="@+id/humidityText"
             app:layout_constraintHorizontal_bias="0.5"
@@ -154,6 +157,7 @@
             android:fontFamily="@font/helvetica_neue_medium"
             android:text="Wind speed"
             android:textColor="@color/colorPrimaryDark"
+            app:goneIfNull="@{weather}"
             app:layout_constraintBottom_toTopOf="@+id/pressureLabel"
             app:layout_constraintEnd_toStartOf="@+id/windSpeedText"
             app:layout_constraintHorizontal_bias="0.5"
@@ -165,6 +169,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/helvetica_neue_medium"
+            app:goneIfNull="@{weather}"
             app:layout_constraintBottom_toBottomOf="@+id/windSpeedLabel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -180,6 +185,7 @@
             android:fontFamily="@font/helvetica_neue_medium"
             android:text="Pressure"
             android:textColor="@color/colorPrimaryDark"
+            app:goneIfNull="@{weather}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/pressureText"
             app:layout_constraintHorizontal_bias="0.5"
@@ -191,12 +197,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/helvetica_neue_medium"
+            app:goneIfNull="@{weather}"
             app:layout_constraintBottom_toBottomOf="@+id/pressureLabel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/pressureLabel"
             app:layout_constraintTop_toTopOf="@+id/pressureLabel"
             tools:text="1023 mb" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="64dp"
+            android:src="@drawable/ic_undraw_season_change"
+            app:goneIfNotNull="@{weather}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dateTimeText" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
