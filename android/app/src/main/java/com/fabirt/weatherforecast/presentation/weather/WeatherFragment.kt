@@ -80,6 +80,11 @@ class WeatherFragment : Fragment() {
         )
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.getCurrenWeather()
+    }
+
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
