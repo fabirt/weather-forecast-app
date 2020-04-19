@@ -50,6 +50,7 @@ class WeatherForecastApplication : Application() {
 
         val repeatingRequest = PeriodicWorkRequestBuilder<DailyWorker>(1, TimeUnit.DAYS)
             .setConstraints(constrains)
+            .setInitialDelay(10, TimeUnit.MINUTES)
             .build()
 
         WorkManager.getInstance(applicationContext).enqueueUniquePeriodicWork(
