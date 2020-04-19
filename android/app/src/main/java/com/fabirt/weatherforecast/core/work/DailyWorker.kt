@@ -39,7 +39,6 @@ class DailyWorker(appContext: Context, params: WorkerParameters) :
      * dependent work will not execute if you return [ListenableWorker.Result.failure]
      */
     override suspend fun doWork(): Result {
-        /*
         val repository: WeatherRepository = WeatherRepositoryImpl(
             weatherService = WeatherApiService(),
             updateTimeProvider = UpdateTimeProviderImpl(applicationContext),
@@ -49,14 +48,24 @@ class DailyWorker(appContext: Context, params: WorkerParameters) :
                 FusedLocationProviderClient(applicationContext)
             )
         )
-        */
 
-        val notification = buildNotification()
+        val (weather, location) = repository.fetchCurrentWeatherMandatory()
+        var content: String =
+            "Have a nice day! Remember to wash your hands, stay safe and check today's weather 🌥"
+        if (weather != null && location != null) {
+            val temperature = weather.temperature
+            content = if (temperature >= 30) {
+                "It is a little hot today. We have $temperature ºC. Take a shower and drink water"
+            } else {
+                "Everyday is a nice day! Today's temperature is $temperature ºC. Remember to wash your hands"
+            }
+        }
+        val notification = buildNotification(content)
         NotificationManagerCompat.from(applicationContext).notify(2000, notification)
         return Result.success()
     }
 
-    private fun buildNotification(): Notification {
+    private fun buildNotification(content: String): Notification {
         // Create an explicit intent for an Activity in your app
         val intent = Intent(applicationContext, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK
@@ -76,7 +85,7 @@ class DailyWorker(appContext: Context, params: WorkerParameters) :
                 )
             )
             .setContentTitle("My weather forecast")
-            .setContentText("Remember to wash your hands, stay safe and check today's weather 🌥")
+            .setContentText(content)
             .setStyle(NotificationCompat.BigTextStyle())
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setAutoCancel(true)
@@ -85,5 +94,4 @@ class DailyWorker(appContext: Context, params: WorkerParameters) :
 
         return notification
     }
-
 }

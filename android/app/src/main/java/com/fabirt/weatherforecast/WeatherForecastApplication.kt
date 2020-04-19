@@ -45,7 +45,7 @@ class WeatherForecastApplication : Application() {
 
     private fun setupRecurringWork() {
         val constrains = Constraints.Builder()
-            .setRequiredNetworkType(NetworkType.NOT_REQUIRED)
+            .setRequiredNetworkType(NetworkType.UNMETERED)
             .build()
 
         val repeatingRequest = PeriodicWorkRequestBuilder<DailyWorker>(1, TimeUnit.DAYS)
