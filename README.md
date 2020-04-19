@@ -21,7 +21,7 @@ The development process involved learning the following topics:
 
 - **Layouts:** Design custom layouts.
 
-- **Data binding:** Allows you to bind UI components in your layouts to data sources in your app.
+- **Data binding:** Allows to bind UI components in your layouts to data sources in your app.
 
 - **Binding adapters:** Are responsible for making the appropriate framework calls to set values.
 
@@ -29,7 +29,7 @@ The development process involved learning the following topics:
 
 - **LiveData:** An observable, lifecycle-aware data holder class.
 
-- **MVVM arcuitecture:** Best practices and recommended architecture pattern for building robust, production-quality apps.
+- **MVVM architecture:** Best practices and recommended architecture pattern for building robust, production-quality apps.
 
 - **Navigation:** Android Jetpack's Navigation component for consistent and predictable user experience.
 
