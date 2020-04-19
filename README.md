@@ -12,6 +12,9 @@ to the current user location.
 ## Weather API
 The weather information is provided by the [World Weather Data API](https://weatherstack.com/)
 
+## Results
+| ![Today tab](assets/today.png) | ![This week tab](assets/this_week.png) |![Settings tab](assets/settings.png)|
+|----------|:-------------:|------:|
 
 ## Acquired knowledge
 The development process involved learning the following topics:
