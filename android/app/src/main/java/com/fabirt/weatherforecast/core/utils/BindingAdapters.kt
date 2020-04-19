@@ -4,7 +4,7 @@ import android.view.View
 import androidx.databinding.BindingAdapter
 
 /**
- * Binding adapter used to hide the view
+ * Binding adapter used to hide the view.
  */
 @BindingAdapter("goneIfNull")
 fun goneIfNull(view: View, it: Any?) {

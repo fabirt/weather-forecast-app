@@ -16,6 +16,10 @@ private const val BASE_URL = BuildConfig.BASE_URL
 private const val API_KEY = BuildConfig.ACCESS_KEY
 
 interface WeatherApiService {
+    /**
+     * Request the current weather information for the given [location].
+     * The response is retrieved in the given [languageCode].
+     */
     @GET("current")
     fun getCurrentWeatherAsync(
         @Query("query") location: String,

@@ -26,12 +26,13 @@ import com.google.android.gms.location.FusedLocationProviderClient
 class WeatherFragment : Fragment() {
 
     private lateinit var viewModel: WeatherViewModel
+    private lateinit var binding: FragmentWeatherBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentWeatherBinding.inflate(inflater, container, false)
+        binding = FragmentWeatherBinding.inflate(inflater, container, false)
 
         // Dependency injection
         val weatherApiService = WeatherApiService()

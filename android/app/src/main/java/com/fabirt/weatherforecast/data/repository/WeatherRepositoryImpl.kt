@@ -41,7 +41,7 @@ class WeatherRepositoryImpl(
         } catch (e: Exception) {
         }
     }
-
+    
     override suspend fun fetchCurrentWeatherMandatory() {
         try {
             fetchCurrentWeather()

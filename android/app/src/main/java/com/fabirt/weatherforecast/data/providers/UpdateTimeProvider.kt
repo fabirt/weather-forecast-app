@@ -7,7 +7,7 @@ interface UpdateTimeProvider {
     fun setLatestUpdateTime(time: Long)
 
     /**
-     * Returns true if the latest stored time was at least 6 hours ago.
+     * @return true if the latest stored time was at least 6 hours ago.
      */
     fun isCurrentWeatherUpdateNeeded(): Boolean
 }

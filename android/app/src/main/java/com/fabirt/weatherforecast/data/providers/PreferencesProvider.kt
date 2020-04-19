@@ -5,6 +5,9 @@ import android.content.SharedPreferences
 import androidx.preference.PreferenceManager
 
 abstract class PreferencesProvider(protected val context: Context) {
+    /**
+     * Default [SharedPreferences].
+     */
     protected val preferences: SharedPreferences
         get() = PreferenceManager.getDefaultSharedPreferences(context.applicationContext)
 }

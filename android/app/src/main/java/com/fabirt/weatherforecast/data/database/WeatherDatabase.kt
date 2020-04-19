@@ -11,6 +11,9 @@ private lateinit var instance: WeatherDatabase
 
 @Database(entities = [CurrentWeather::class, WeatherLocation::class], version = 1)
 abstract class WeatherDatabase : RoomDatabase() {
+    /**
+     * Weather data access object.
+     */
     abstract val weatherDao: WeatherDao
 }
 
