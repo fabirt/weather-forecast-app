@@ -26,8 +26,8 @@ class WeatherRepositoryImpl(
         Transformations.map(weatherDao.getCurrentWeatherLocation()) { location ->
             location?.let {
                 val formatter = DateTimeFormatter.ofPattern("EEE dd MMMM yyyy", Locale.ENGLISH)
-                val date = LocalDate.ofEpochDay(location.localtimeEpoch / 86400L)
-                location.copy(localtime = date.format(formatter))
+                val date = LocalDate.ofEpochDay(it.localtimeEpoch / 86400L)
+                it.copy(localtime = date.format(formatter))
             }
         }
 

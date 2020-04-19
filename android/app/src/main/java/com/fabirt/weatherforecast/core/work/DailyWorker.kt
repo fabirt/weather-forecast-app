@@ -30,6 +30,7 @@ class DailyWorker(appContext: Context, params: WorkerParameters) :
      * dependent work will not execute if you return [ListenableWorker.Result.failure]
      */
     override suspend fun doWork(): Result {
+        /*
         val repository: WeatherRepository = WeatherRepositoryImpl(
             weatherService = WeatherApiService(),
             updateTimeProvider = UpdateTimeProviderImpl(applicationContext),
@@ -47,7 +48,7 @@ class DailyWorker(appContext: Context, params: WorkerParameters) :
             .setPriority(NotificationCompat.PRIORITY_HIGH)
 
         NotificationManagerCompat.from(applicationContext).notify(2000, builder.build())
-
+        */
         return Result.success()
     }
 
