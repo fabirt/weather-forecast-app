@@ -19,3 +19,8 @@ const val LAST_UPDATED_TIME_KEY = "LAST_UPDATED_TIME_KEY"
  * Location permission request code.
  */
 const val LOCATION_PERMISSION_REQUEST_CODE = 1
+
+/**
+ * Notification channel id.
+ */
+const val NOTIFICATION_CHANNEL_ID = "WEATHER_FORECAST_NOTIFICATION_CHANNEL"
