@@ -16,8 +16,9 @@ import kotlinx.coroutines.withContext
 import org.threeten.bp.LocalDate
 import org.threeten.bp.format.DateTimeFormatter
 import java.util.*
+import javax.inject.Inject
 
-class WeatherRepositoryImpl(
+class WeatherRepositoryImpl @Inject constructor(
     private val weatherDao: WeatherDao,
     private val weatherService: WeatherApiService,
     private val updateTimeProvider: UpdateTimeProvider,

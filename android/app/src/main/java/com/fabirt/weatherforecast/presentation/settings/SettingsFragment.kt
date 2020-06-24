@@ -12,7 +12,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.fabirt.weatherforecast.databinding.FragmentSettingsBinding
 
-
 class SettingsFragment : Fragment() {
 
     private lateinit var binding: FragmentSettingsBinding
@@ -57,10 +56,11 @@ class SettingsFragment : Fragment() {
     }
 
     private fun locationEnabledCheckedChangeListener() {
-        val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
-            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            .addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
-            .addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS)
+        val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or
+                    Intent.FLAG_ACTIVITY_NO_HISTORY or
+                    Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS
+        }
         startActivity(intent)
     }
 

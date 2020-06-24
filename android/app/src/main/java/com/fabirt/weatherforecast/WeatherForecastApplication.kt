@@ -8,11 +8,13 @@ import android.os.Build
 import androidx.work.*
 import com.fabirt.weatherforecast.core.constants.NOTIFICATION_CHANNEL_ID
 import com.fabirt.weatherforecast.core.work.DailyWorker
+import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.concurrent.TimeUnit
 
+@HiltAndroidApp
 class WeatherForecastApplication : Application() {
     private val applicationScope = CoroutineScope(Dispatchers.Default)
 

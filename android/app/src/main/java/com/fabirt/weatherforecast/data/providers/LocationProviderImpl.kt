@@ -1,6 +1,7 @@
 package com.fabirt.weatherforecast.data.providers
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Location
@@ -9,12 +10,15 @@ import com.fabirt.weatherforecast.core.error.LatestLocationNotFoundException
 import com.fabirt.weatherforecast.core.error.LocationPermissionNotGrantedException
 import com.fabirt.weatherforecast.core.extensions.asDeferredAsync
 import com.google.android.gms.location.FusedLocationProviderClient
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Deferred
+import javax.inject.Inject
 
-class LocationProviderImpl(
-    context: Context,
-    private val fusedLocationProviderClient: FusedLocationProviderClient
+class LocationProviderImpl @Inject constructor(
+    @ApplicationContext context: Context
 ) : PreferencesProvider(context), LocationProvider {
+
+    private val fusedLocationProviderClient = FusedLocationProviderClient(context)
 
     override suspend fun getPreferredLocationString(): String {
         val location =
@@ -22,6 +26,7 @@ class LocationProviderImpl(
         return "${location.latitude},${location.longitude}"
     }
 
+    @SuppressLint("MissingPermission")
     private fun getLastDeviceLocationAsync(): Deferred<Location?> {
         if (hasLocationPermission()) {
             return fusedLocationProviderClient.lastLocation.asDeferredAsync()

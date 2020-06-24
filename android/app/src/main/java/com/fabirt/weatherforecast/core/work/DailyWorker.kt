@@ -11,14 +11,7 @@ import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.fabirt.weatherforecast.R
 import com.fabirt.weatherforecast.core.constants.NOTIFICATION_CHANNEL_ID
-import com.fabirt.weatherforecast.data.database.getDatabase
-import com.fabirt.weatherforecast.data.network.WeatherApiService
-import com.fabirt.weatherforecast.data.providers.LocationProviderImpl
-import com.fabirt.weatherforecast.data.providers.UpdateTimeProviderImpl
-import com.fabirt.weatherforecast.data.repository.WeatherRepositoryImpl
-import com.fabirt.weatherforecast.domain.repository.WeatherRepository
 import com.fabirt.weatherforecast.presentation.MainActivity
-import com.google.android.gms.location.FusedLocationProviderClient
 
 class DailyWorker(appContext: Context, params: WorkerParameters) :
     CoroutineWorker(appContext, params) {
@@ -27,41 +20,30 @@ class DailyWorker(appContext: Context, params: WorkerParameters) :
         const val WORK_NAME = "DailyWeatherWorker"
     }
 
-    /**
-     * A suspending method to do your work.  This function runs on the coroutine context specified
-     * by [coroutineContext].
-     * <p>
-     * A CoroutineWorker is given a maximum of ten minutes to finish its execution and return a
-     * [ListenableWorker.Result].  After this time has expired, the worker will be signalled to
-     * stop.
-     *
-     * @return The [ListenableWorker.Result] of the result of the background work; note that
-     * dependent work will not execute if you return [ListenableWorker.Result.failure]
-     */
     override suspend fun doWork(): Result {
-        val repository: WeatherRepository = WeatherRepositoryImpl(
-            weatherService = WeatherApiService(),
-            updateTimeProvider = UpdateTimeProviderImpl(applicationContext),
-            weatherDao = getDatabase(applicationContext).weatherDao,
-            locationProvider = LocationProviderImpl(
-                applicationContext,
-                FusedLocationProviderClient(applicationContext)
-            )
-        )
-
-        val (weather, location) = repository.fetchCurrentWeatherMandatory()
-        var content: String =
-            "Have a nice day! Remember to wash your hands, stay safe and check today's weather 🌥"
-        if (weather != null && location != null) {
-            val temperature = weather.temperature
-            content = if (temperature >= 30) {
-                "It is a little hot today. We have $temperature ºC. Take a shower and drink water"
-            } else {
-                "Everyday is a nice day! Today's temperature is $temperature ºC. Remember to wash your hands"
-            }
-        }
-        val notification = buildNotification(content)
-        NotificationManagerCompat.from(applicationContext).notify(2000, notification)
+//        val repository: WeatherRepository = WeatherRepositoryImpl(
+//            weatherService = WeatherApiService(),
+//            updateTimeProvider = UpdateTimeProviderImpl(applicationContext),
+//            weatherDao = getDatabase(applicationContext).weatherDao,
+//            locationProvider = LocationProviderImpl(
+//                applicationContext,
+//                FusedLocationProviderClient(applicationContext)
+//            )
+//        )
+//
+//        val (weather, location) = repository.fetchCurrentWeatherMandatory()
+//        var content: String =
+//            "Have a nice day! Remember to wash your hands, stay safe and check today's weather 🌥"
+//        if (weather != null && location != null) {
+//            val temperature = weather.temperature
+//            content = if (temperature >= 30) {
+//                "It is a little hot today. We have $temperature ºC. Take a shower and drink water"
+//            } else {
+//                "Everyday is a nice day! Today's temperature is $temperature ºC. Remember to wash your hands"
+//            }
+//        }
+//        val notification = buildNotification(content)
+//        NotificationManagerCompat.from(applicationContext).notify(2000, notification)
         return Result.success()
     }
 
@@ -90,8 +72,7 @@ class DailyWorker(appContext: Context, params: WorkerParameters) :
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setAutoCancel(true)
             .setContentIntent(pendingIntent)
-            .build()
 
-        return notification
+        return notification.build()
     }
 }

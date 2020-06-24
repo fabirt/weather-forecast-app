@@ -3,29 +3,20 @@ package com.fabirt.weatherforecast.presentation.weather
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.app.ActivityCompat
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-
-import com.fabirt.weatherforecast.R
 import com.fabirt.weatherforecast.core.constants.LOCATION_PERMISSION_REQUEST_CODE
-import com.fabirt.weatherforecast.data.database.getDatabase
-import com.fabirt.weatherforecast.data.network.WeatherApiService
-import com.fabirt.weatherforecast.data.providers.LocationProviderImpl
-import com.fabirt.weatherforecast.data.providers.UpdateTimeProvider
-import com.fabirt.weatherforecast.data.providers.UpdateTimeProviderImpl
-import com.fabirt.weatherforecast.data.repository.WeatherRepositoryImpl
 import com.fabirt.weatherforecast.databinding.FragmentWeatherBinding
-import com.google.android.gms.location.FusedLocationProviderClient
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class WeatherFragment : Fragment() {
 
-    private lateinit var viewModel: WeatherViewModel
+    private val viewModel: WeatherViewModel by viewModels()
     private lateinit var binding: FragmentWeatherBinding
 
     override fun onCreateView(
@@ -33,24 +24,6 @@ class WeatherFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentWeatherBinding.inflate(inflater, container, false)
-
-        // Dependency injection
-        val weatherApiService = WeatherApiService()
-        val weatherDatabase = getDatabase(requireContext())
-        val updateTimeProvider = UpdateTimeProviderImpl(requireContext())
-        val locationProvider = LocationProviderImpl(
-            requireActivity(),
-            FusedLocationProviderClient(requireActivity())
-        )
-        val weatherRepository = WeatherRepositoryImpl(
-            weatherService = weatherApiService,
-            updateTimeProvider = updateTimeProvider,
-            weatherDao = weatherDatabase.weatherDao,
-            locationProvider = locationProvider
-        )
-        val viewModelFactory = WeatherViewModelFactory(weatherRepository)
-
-        viewModel = ViewModelProvider(this, viewModelFactory).get(WeatherViewModel::class.java)
 
         viewModel.currentWeather.observe(viewLifecycleOwner, Observer { weather ->
             weather?.let {
@@ -96,5 +69,4 @@ class WeatherFragment : Fragment() {
             }
         }
     }
-
 }

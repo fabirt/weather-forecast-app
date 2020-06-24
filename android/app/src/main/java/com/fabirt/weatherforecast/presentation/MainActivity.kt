@@ -13,8 +13,10 @@ import com.fabirt.weatherforecast.presentation.futureweather.FutureWeatherFragme
 import com.fabirt.weatherforecast.presentation.settings.SettingsFragmentDirections
 import com.fabirt.weatherforecast.presentation.weather.WeatherFragmentDirections
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

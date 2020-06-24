@@ -11,6 +11,11 @@ const val CURRENT_WEATHER_ID = 0
 const val CURRENT_WEATHER_LOCATION_ID = 0
 
 /**
+ * Weather database name.
+ */
+const val WEATHER_DATABASE_NAME = "weather_db"
+
+/**
  * SharedPreferences key to store the latest time where the weather was fetched.
  */
 const val LAST_UPDATED_TIME_KEY = "LAST_UPDATED_TIME_KEY"
