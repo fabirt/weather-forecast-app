@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.widget.TooltipCompat
 import androidx.core.view.forEach
 import androidx.navigation.findNavController
@@ -29,6 +30,15 @@ class MainActivity : AppCompatActivity() {
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_nav)
         val navController = findNavController(R.id.nav_host_fragment)
         bottomNav.setupWithNavController(navController)
+
+        // Removes BottomNavigationView tooltip
+        bottomNav.menu.forEach {
+            bottomNav.findViewById<View>(it.itemId).also { view ->
+                view.setOnLongClickListener {
+                    true
+                }
+            }
+        }
         bottomNav.setOnNavigationItemSelectedListener {
             selectedNavigationItemListener(it, bottomNav.selectedItemId)
             true
@@ -37,7 +47,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun selectedNavigationItemListener(item: MenuItem, selectedId: Int) {
         val navController = findNavController(R.id.nav_host_fragment)
-        when(item.itemId) {
+        when (item.itemId) {
             R.id.weatherFragment -> {
                 if (selectedId == R.id.futureWeatherFragment) {
                     navController.navigate(FutureWeatherFragmentDirections.actionFutureWeatherFragmentToWeatherFragment())
