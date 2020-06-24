@@ -43,4 +43,6 @@ The development process involved learning the following topics:
 
 - **WorkManager:**  API to schedule deferrable, asynchronous tasks that are expected to run even if the app is closed. In this project, it's used to request the current weather from the API and send a notification to the user with a friendly message.
 
+- **Dependency Injection:** Using Android **Hilt** library to implement dependency injection pattern.
+
 - **Product flavors:** Build variants to create different versions of your app from a single project, for example, with different base API url.
