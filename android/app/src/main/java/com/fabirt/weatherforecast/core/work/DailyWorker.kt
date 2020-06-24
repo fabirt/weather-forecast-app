@@ -7,13 +7,20 @@ import android.content.Intent
 import android.graphics.BitmapFactory
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.hilt.Assisted
+import androidx.hilt.work.WorkerInject
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.fabirt.weatherforecast.R
 import com.fabirt.weatherforecast.core.constants.NOTIFICATION_CHANNEL_ID
+import com.fabirt.weatherforecast.domain.repository.WeatherRepository
 import com.fabirt.weatherforecast.presentation.MainActivity
 
-class DailyWorker(appContext: Context, params: WorkerParameters) :
+class DailyWorker @WorkerInject constructor(
+    @Assisted appContext: Context,
+    @Assisted params: WorkerParameters,
+    private val weatherRepository: WeatherRepository
+) :
     CoroutineWorker(appContext, params) {
 
     companion object {
@@ -21,29 +28,19 @@ class DailyWorker(appContext: Context, params: WorkerParameters) :
     }
 
     override suspend fun doWork(): Result {
-//        val repository: WeatherRepository = WeatherRepositoryImpl(
-//            weatherService = WeatherApiService(),
-//            updateTimeProvider = UpdateTimeProviderImpl(applicationContext),
-//            weatherDao = getDatabase(applicationContext).weatherDao,
-//            locationProvider = LocationProviderImpl(
-//                applicationContext,
-//                FusedLocationProviderClient(applicationContext)
-//            )
-//        )
-//
-//        val (weather, location) = repository.fetchCurrentWeatherMandatory()
-//        var content: String =
-//            "Have a nice day! Remember to wash your hands, stay safe and check today's weather 🌥"
-//        if (weather != null && location != null) {
-//            val temperature = weather.temperature
-//            content = if (temperature >= 30) {
-//                "It is a little hot today. We have $temperature ºC. Take a shower and drink water"
-//            } else {
-//                "Everyday is a nice day! Today's temperature is $temperature ºC. Remember to wash your hands"
-//            }
-//        }
-//        val notification = buildNotification(content)
-//        NotificationManagerCompat.from(applicationContext).notify(2000, notification)
+        val (weather, location) = weatherRepository.fetchCurrentWeatherMandatory()
+        var content: String =
+            "Have a nice day! Remember to wash your hands, stay safe and check today's weather 🌥"
+        if (weather != null && location != null) {
+            val temperature = weather.temperature
+            content = if (temperature >= 30) {
+                "It is a little hot today. We have $temperature ºC. Take a shower and drink water"
+            } else {
+                "Everyday is a nice day! Today's temperature is $temperature ºC. Remember to wash your hands"
+            }
+        }
+        val notification = buildNotification(content)
+        NotificationManagerCompat.from(applicationContext).notify(2000, notification)
         return Result.success()
     }
 
