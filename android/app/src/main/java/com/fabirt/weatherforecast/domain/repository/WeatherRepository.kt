@@ -1,6 +1,8 @@
 package com.fabirt.weatherforecast.domain.repository
 
 import androidx.lifecycle.LiveData
+import com.fabirt.weatherforecast.core.error.Failure
+import com.fabirt.weatherforecast.core.other.Either
 import com.fabirt.weatherforecast.domain.entities.CurrentWeather
 import com.fabirt.weatherforecast.data.models.WeatherLocation
 
@@ -19,7 +21,7 @@ interface WeatherRepository {
      * Obtains data from the API service and updates [currentWeather] and [currentLocation]
      * if the conditions for making the request are met.
      */
-    suspend fun fetchCurrentWeatherRacionale()
+    suspend fun fetchCurrentWeatherRacionale(): Either<Failure, Unit>
 
     /**
      * Obtains data from the API service and updates [currentWeather] and [currentLocation].

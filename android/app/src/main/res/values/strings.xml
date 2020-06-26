@@ -2,7 +2,7 @@
     <string name="app_name">My Weather Forecast</string>
     <string name="current_weather">Today</string>
     <string name="future_weather">This week</string>
-    <string name="preferences">Preferences</string>
+    <string name="settings">Settings</string>
     <string name="future_weather_title">Weekly Forecast</string>
     <string name="not_available">NOT AVAILABLE</string>
     <string name="not_available_description">TODO</string>

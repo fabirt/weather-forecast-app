@@ -1,7 +1,11 @@
 package com.fabirt.weatherforecast.presentation.weather
 
 import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.fabirt.weatherforecast.core.error.Failure
+import com.fabirt.weatherforecast.core.other.Either
 import com.fabirt.weatherforecast.domain.repository.WeatherRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -17,14 +21,28 @@ class WeatherViewModel @ViewModelInject constructor(
     val currentWeather = repository.currentWeather
     val currentLocation = repository.currentLocation
 
+    private val _failure = MutableLiveData<Failure?>()
+    val failure: LiveData<Failure?>
+        get() = _failure
+
     init {
         // getCurrenWeather()
     }
 
     fun getCurrenWeather() {
         viewModelScope.launch {
-            repository.fetchCurrentWeatherRacionale()
+            val result = repository.fetchCurrentWeatherRacionale()
+            when (result) {
+                is Either.Left -> _failure.value = result.l
+                is Either.Right -> {
+                    // do nothing
+                }
+            }
         }
+    }
+
+    fun clearFailure() {
+        _failure.value = null
     }
 
     override fun onCleared() {
