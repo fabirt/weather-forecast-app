@@ -1,5 +1,21 @@
 package com.fabirt.weatherforecast.core.error
 
-class LocationPermissionNotGrantedException : Exception()
+abstract class AppException : Exception() {
+    abstract fun toFailure(): Failure
+}
 
-class LatestLocationNotFoundException : Exception()
+class LocationPermissionNotGrantedException : AppException() {
+    override fun toFailure(): Failure = LocationPermissionNotGrantedFailure()
+}
+
+class LatestLocationNotFoundException : AppException() {
+    override fun toFailure(): Failure = LatestLocationNotFoundFailure()
+}
+
+class NetworkException : AppException() {
+    override fun toFailure(): Failure = NetworkFailure()
+}
+
+class UnexpectedException : AppException() {
+    override fun toFailure(): Failure = UnexpectedFailure()
+}
