@@ -19,7 +19,9 @@ import org.threeten.bp.format.DateTimeFormatter
 import java.net.UnknownHostException
 import java.util.*
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class WeatherRepositoryImpl @Inject constructor(
     private val weatherDao: WeatherDao,
     private val weatherService: WeatherApiService,
