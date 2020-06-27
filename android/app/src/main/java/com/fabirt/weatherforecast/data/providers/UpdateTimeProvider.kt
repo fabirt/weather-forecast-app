@@ -4,7 +4,7 @@ interface UpdateTimeProvider {
     /**
      * Updates the latest time, in milliseconds, where the weather was updated.
      */
-    fun setLatestUpdateTime(time: Long)
+    fun saveLastUpdateTime(time: Long)
 
     /**
      * @return true if the latest stored time was at least 6 hours ago.

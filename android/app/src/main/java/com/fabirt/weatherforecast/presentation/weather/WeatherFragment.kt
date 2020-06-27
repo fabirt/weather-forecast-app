@@ -45,7 +45,7 @@ class WeatherFragment : Fragment() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
             if (grantResults.isNotEmpty() && grantResults.first() == PackageManager.PERMISSION_GRANTED) {
-                viewModel.getCurrenWeather()
+                viewModel.requestCurrenWeather()
             }
         }
     }

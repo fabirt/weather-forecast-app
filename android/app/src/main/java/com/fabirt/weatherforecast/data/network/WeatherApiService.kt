@@ -11,7 +11,7 @@ interface WeatherApiService {
      * The response is retrieved in the given [languageCode].
      */
     @GET("current")
-    fun getCurrentWeatherAsync(
+    fun requestCurrentWeatherAsync(
         @Query("query") location: String,
         @Query("language") languageCode: String
     ): Deferred<WeatherResponse>

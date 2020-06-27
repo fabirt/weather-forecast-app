@@ -3,8 +3,6 @@ package com.fabirt.weatherforecast.data.repository
 import androidx.lifecycle.Transformations
 import com.fabirt.weatherforecast.core.error.AppException
 import com.fabirt.weatherforecast.core.error.Failure
-import com.fabirt.weatherforecast.core.error.NetworkFailure
-import com.fabirt.weatherforecast.core.error.UnexpectedFailure
 import com.fabirt.weatherforecast.core.extensions.asDomainEntity
 import com.fabirt.weatherforecast.core.other.Either
 import com.fabirt.weatherforecast.data.database.WeatherDao
@@ -29,10 +27,10 @@ class WeatherRepositoryImpl @Inject constructor(
     private val locationProvider: LocationProvider
 ) : WeatherRepository {
 
-    override val currentWeather = weatherDao.getCurrentWeather()
+    override val currentWeather = weatherDao.readCurrentWeather()
 
     override val currentLocation =
-        Transformations.map(weatherDao.getCurrentWeatherLocation()) { location ->
+        Transformations.map(weatherDao.readCurrentWeatherLocation()) { location ->
             location?.let {
                 val formatter = DateTimeFormatter.ofPattern("EEE dd MMMM yyyy", Locale.ENGLISH)
                 val date = LocalDate.ofEpochDay(it.localtimeEpoch / 86400L)
@@ -41,18 +39,18 @@ class WeatherRepositoryImpl @Inject constructor(
         }
 
     override suspend fun fetchCurrentWeatherRacionale(): Either<Failure, Unit> {
-        try {
-            return withContext(Dispatchers.IO) {
+        return try {
+            withContext(Dispatchers.IO) {
                 if (updateTimeProvider.isCurrentWeatherUpdateNeeded()) {
                     fetchCurrentWeather()
                 }
-                return@withContext Either.Right(Unit)
+                Either.Right(Unit)
             }
         } catch (e: Exception) {
-            return when (e) {
+            when (e) {
                 is AppException -> Either.Left(e.toFailure())
-                is UnknownHostException -> Either.Left(NetworkFailure())
-                else -> Either.Left(UnexpectedFailure())
+                is UnknownHostException -> Either.Left(Failure.NetworkFailure)
+                else -> Either.Left(Failure.UnexpectedFailure)
             }
         }
     }
@@ -66,11 +64,11 @@ class WeatherRepositoryImpl @Inject constructor(
     }
 
     private suspend fun fetchCurrentWeather(): Pair<CurrentWeather, WeatherLocation> {
-        val location = locationProvider.getPreferredLocationString()
-        val weatherResponse = weatherService.getCurrentWeatherAsync(location, "").await()
+        val location = locationProvider.requestPreferredLocation()
+        val weatherResponse = weatherService.requestCurrentWeatherAsync(location, "").await()
         weatherDao.upsertCurrentWeather(weatherResponse.currentWeather.asDomainEntity())
         weatherDao.upsertCurrentWeatherLocation(weatherResponse.location)
-        updateTimeProvider.setLatestUpdateTime(System.currentTimeMillis())
+        updateTimeProvider.saveLastUpdateTime(System.currentTimeMillis())
         return Pair(weatherResponse.currentWeather.asDomainEntity(), weatherResponse.location)
     }
 }

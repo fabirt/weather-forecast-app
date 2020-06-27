@@ -10,24 +10,18 @@ class UpdateTimeProviderImpl @Inject constructor(
     @ApplicationContext context: Context
 ) : PreferencesProvider(context), UpdateTimeProvider {
 
-    private fun getLatestUpdateTime(): Long {
+    private fun requestLastUpdateTime(): Long {
         return preferences.getLong(LAST_UPDATED_TIME_KEY, 0)
     }
 
-    /**
-     * Updates the latest time, in milliseconds, where the weather was updated.
-     * */
-    override fun setLatestUpdateTime(time: Long) {
+    override fun saveLastUpdateTime(time: Long) {
         val editor = preferences.edit()
         editor.putLong(LAST_UPDATED_TIME_KEY, time)
         editor.apply()
     }
 
-    /**
-     * Returns true if the latest stored time was at least 6 hours ago.
-     */
     override fun isCurrentWeatherUpdateNeeded(): Boolean {
-        val latestTime = getLatestUpdateTime()
+        val latestTime = requestLastUpdateTime()
         val currentTime = System.currentTimeMillis()
         val requiredDiff = 2.16e7
         return currentTime - latestTime > requiredDiff

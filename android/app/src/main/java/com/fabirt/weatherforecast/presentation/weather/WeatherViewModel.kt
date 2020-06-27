@@ -26,18 +26,18 @@ class WeatherViewModel @ViewModelInject constructor(
         get() = _failure
 
     init {
-        // getCurrenWeather()
+        // requestCurrenWeather()
     }
 
-    fun getCurrenWeather() {
+    fun requestCurrenWeather() {
         viewModelScope.launch {
             val result = repository.fetchCurrentWeatherRacionale()
-            when (result) {
-                is Either.Left -> _failure.value = result.l
-                is Either.Right -> {
-                    // do nothing
-                }
-            }
+            result.fold(
+                { failure ->
+                    _failure.value = failure
+                },
+                {}
+            )
         }
     }
 

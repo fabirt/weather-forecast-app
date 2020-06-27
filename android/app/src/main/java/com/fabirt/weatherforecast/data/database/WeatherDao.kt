@@ -18,7 +18,7 @@ interface WeatherDao {
      * whenever is change in the database,
      */
     @Query("select * from current_weather where id = $CURRENT_WEATHER_ID")
-    fun getCurrentWeather(): LiveData<CurrentWeather?>
+    fun readCurrentWeather(): LiveData<CurrentWeather?>
 
     /**
      * @return [LiveData] with the latest stored [WeatherLocation]
@@ -26,7 +26,7 @@ interface WeatherDao {
      * whenever is change in the database,
      */
     @Query("select * from weather_location where id = $CURRENT_WEATHER_LOCATION_ID")
-    fun getCurrentWeatherLocation(): LiveData<WeatherLocation?>
+    fun readCurrentWeatherLocation(): LiveData<WeatherLocation?>
 
     /**
      * Insert the given [currentWeather] into the database, if there is a previous

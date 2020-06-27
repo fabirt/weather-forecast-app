@@ -6,5 +6,5 @@ interface LocationProvider {
      * @throws Exception if location permissions aren't granted or if there is no location
      * stored in the device.
      */
-    suspend fun getPreferredLocationString(): String
+    suspend fun requestPreferredLocation(): String
 }
