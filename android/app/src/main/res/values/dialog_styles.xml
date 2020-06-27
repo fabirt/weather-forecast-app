@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="PopupDialog" parent="AppTheme">
+        <item name="android:windowAnimationStyle">@style/PopupDialogAnimation</item>
+    </style>
+
+    <style name="PopupDialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/fade_scale_in</item>
+        <item name="android:windowExitAnimation">@anim/fade_scale_out</item>
+    </style>
+
+</resources>

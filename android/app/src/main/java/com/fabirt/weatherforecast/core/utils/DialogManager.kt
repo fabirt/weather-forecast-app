@@ -19,11 +19,14 @@ object DialogManager {
         val dialog = Dialog(context)
         dialog.setContentView(R.layout.popup_dialog)
         val window = dialog.window!!
-        window.setElevation(24F)
+        window.setElevation(24F) // Material specs dialog elevation
         val layoutParams = WindowManager.LayoutParams().apply {
             copyFrom(window.attributes)
             width = WindowManager.LayoutParams.WRAP_CONTENT
+            windowAnimations = R.style.PopupDialog
         }
+        window.attributes = layoutParams
+        window.setWindowAnimations(R.style.PopupDialogAnimation)
         window.setBackgroundDrawable(context.getDrawable(R.drawable.shape_popup))
         val titleText = dialog.findViewById<TextView>(R.id.dialogTitleText)
         val bodyText = dialog.findViewById<TextView>(R.id.dialogBodyText)
@@ -41,6 +44,5 @@ object DialogManager {
             dialog.dismiss()
         }
         dialog.show()
-        window.attributes = layoutParams
     }
 }
