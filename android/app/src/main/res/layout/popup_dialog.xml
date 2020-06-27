@@ -32,6 +32,7 @@
         android:paddingBottom="16dp"
         android:text=""
         android:textColor="@color/colorPrimaryDark"
+        android:textSize="16sp"
         tools:text="Lorem ipsum dolor sit amet consectetur adipiscing elit ultricies scelerisque, porta et blandit fusce phasellus iaculis class metus dui, rhoncus semper ante condimentum nisl fermentum per tortor." />
 
     <Button
