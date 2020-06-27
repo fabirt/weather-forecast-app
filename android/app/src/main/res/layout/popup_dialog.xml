@@ -24,7 +24,7 @@
         android:id="@+id/dialogBodyText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/helvetica_neue"
+        android:fontFamily="sans-serif-light"
         android:gravity="center"
         android:paddingLeft="24dp"
         android:paddingTop="8dp"
@@ -32,7 +32,6 @@
         android:paddingBottom="16dp"
         android:text=""
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="16sp"
         tools:text="Lorem ipsum dolor sit amet consectetur adipiscing elit ultricies scelerisque, porta et blandit fusce phasellus iaculis class metus dui, rhoncus semper ante condimentum nisl fermentum per tortor." />
 
     <Button
@@ -48,6 +47,8 @@
         android:paddingTop="12dp"
         android:paddingBottom="12dp"
         android:text=""
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         app:cornerRadius="8dp"
         tools:text="Choose Action" />
 
@@ -65,6 +66,8 @@
         android:paddingTop="12dp"
         android:paddingBottom="12dp"
         android:text=""
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
         android:textColor="@color/colorPrimaryDark"
         app:cornerRadius="8dp"
         app:rippleColor="@color/colorPrimaryDarkRipple"
