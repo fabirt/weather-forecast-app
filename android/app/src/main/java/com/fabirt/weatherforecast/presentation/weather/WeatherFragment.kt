@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.fabirt.weatherforecast.core.constants.LOCATION_PERMISSION_REQUEST_CODE
@@ -21,6 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class WeatherFragment : Fragment() {
 
+    private val locationPermission = Manifest.permission.ACCESS_FINE_LOCATION
     private val viewModel: WeatherViewModel by viewModels()
     private lateinit var binding: FragmentWeatherBinding
 
@@ -35,7 +37,7 @@ class WeatherFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        requestLocationPermissions()
+        checkPermissions()
     }
 
     override fun onRequestPermissionsResult(
@@ -49,26 +51,48 @@ class WeatherFragment : Fragment() {
             if (result == PackageManager.PERMISSION_GRANTED) {
                 viewModel.requestCurrenWeather()
             } else if (result == PackageManager.PERMISSION_DENIED) {
-                requestLocationPermissions()
+                DialogManager.show(
+                    requireContext(),
+                    title = Failure.LocationPermissionNotGrantedFailure.title,
+                    body = Failure.LocationPermissionNotGrantedFailure.message,
+                    positiveText = "Settings",
+                    onConfirm = {
+                        SettingsManager.openAppSettings(requireContext())
+                    }
+                )
             }
         }
     }
 
+    private fun checkPermissions() {
+        if (ContextCompat.checkSelfPermission(
+                requireContext(),
+                locationPermission
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            viewModel.requestCurrenWeather()
+        } else {
+            requestLocationPermissions()
+        }
+    }
+
     private fun requestLocationPermissions() {
-        val permission = Manifest.permission.ACCESS_FINE_LOCATION
-        if (shouldShowRequestPermissionRationale(permission)) {
+        if (shouldShowRequestPermissionRationale(locationPermission)) {
             DialogManager.show(
                 requireContext(),
                 title = Failure.LocationPermissionNotGrantedFailure.title,
                 body = Failure.LocationPermissionNotGrantedFailure.message,
-                positiveText = "Settings",
+                positiveText = "Allow",
                 onConfirm = {
-                    SettingsManager.openAppSettings(requireContext())
+                    requestPermissions(
+                        arrayOf(locationPermission),
+                        LOCATION_PERMISSION_REQUEST_CODE
+                    )
                 }
             )
         } else {
             requestPermissions(
-                arrayOf(permission),
+                arrayOf(locationPermission),
                 LOCATION_PERMISSION_REQUEST_CODE
             )
         }
@@ -145,4 +169,5 @@ class WeatherFragment : Fragment() {
         )
         viewModel.clearFailure()
     }
+
 }
