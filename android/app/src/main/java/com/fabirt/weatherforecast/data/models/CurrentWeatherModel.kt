@@ -1,5 +1,7 @@
 package com.fabirt.weatherforecast.data.models
 
+import com.fabirt.weatherforecast.data.network.NumberToDoubleAdapter
+import com.google.gson.annotations.JsonAdapter
 import com.google.gson.annotations.SerializedName
 
 data class CurrentWeatherModel(
@@ -12,7 +14,8 @@ data class CurrentWeatherModel(
     @SerializedName("observation_time")
     val observationTime: String,
     @SerializedName("precip")
-    val precip: Int,
+    @JsonAdapter(NumberToDoubleAdapter::class)
+    val precip: Double,
     @SerializedName("pressure")
     val pressure: Int,
     @SerializedName("temperature")

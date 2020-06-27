@@ -23,7 +23,7 @@ data class WeatherResponse(
                     windDegree = 349,
                     windDir = "N",
                     pressure = 1010,
-                    precip = 0,
+                    precip = 0.0,
                     humidity = 90,
                     cloudcover = 0,
                     feelslike = 13,
