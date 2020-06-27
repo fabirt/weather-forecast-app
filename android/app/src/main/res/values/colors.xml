@@ -3,9 +3,9 @@
     <color name="colorPrimary">#F7F7F7</color>
     <color name="colorPrimaryDark">#263144</color>
     <color name="colorAccent">#516DFF</color>
-    <color name="colorAccentRipple">#10516DFF</color>
+    <color name="colorAccentRipple">#24516DFF</color>
     <color name="colorBackground">#F7F7F7</color>
     <color name="colorSurface">#FFFFFF</color>
     <color name="colorSecondaryButton">#EEEEEE</color>
-    <color name="colorPrimaryDarkRipple">#26263144</color>
+    <color name="colorPrimaryDarkRipple">#24263144</color>
 </resources>
