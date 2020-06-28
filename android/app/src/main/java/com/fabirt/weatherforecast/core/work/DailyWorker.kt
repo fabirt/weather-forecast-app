@@ -20,8 +20,7 @@ class DailyWorker @WorkerInject constructor(
     @Assisted appContext: Context,
     @Assisted params: WorkerParameters,
     private val weatherRepository: WeatherRepository
-) :
-    CoroutineWorker(appContext, params) {
+) : CoroutineWorker(appContext, params) {
 
     companion object {
         const val WORK_NAME = "DailyWeatherWorker"
@@ -29,14 +28,14 @@ class DailyWorker @WorkerInject constructor(
 
     override suspend fun doWork(): Result {
         val (weather, location) = weatherRepository.fetchCurrentWeatherMandatory()
-        var content: String =
+        var content =
             "Have a nice day! Remember to wash your hands, stay safe and check today's weather 🌥"
         if (weather != null && location != null) {
             val temperature = weather.temperature
             content = if (temperature >= 30) {
                 "It is a little hot today. We have $temperature ºC. Take a shower and drink water"
             } else {
-                "Everyday is a nice day! Today's temperature is $temperature ºC. Remember to wash your hands"
+                "Everyday is a nice day! Today's temperature is $temperature ºC."
             }
         }
         val notification = buildNotification(content)
@@ -51,8 +50,12 @@ class DailyWorker @WorkerInject constructor(
             action = Intent.ACTION_MAIN
             addCategory(Intent.CATEGORY_LAUNCHER)
         }
-        val pendingIntent: PendingIntent =
-            PendingIntent.getActivity(applicationContext, 0, intent, 0)
+        val pendingIntent: PendingIntent = PendingIntent.getActivity(
+            applicationContext,
+            0,
+            intent,
+            0
+        )
 
         val notification = NotificationCompat.Builder(applicationContext, NOTIFICATION_CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_notification_large)
