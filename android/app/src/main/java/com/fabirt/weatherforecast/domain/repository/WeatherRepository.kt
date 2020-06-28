@@ -26,5 +26,5 @@ interface WeatherRepository {
     /**
      * Obtains data from the API service and updates [currentWeather] and [currentLocation].
      */
-    suspend fun fetchCurrentWeatherMandatory(): Pair<CurrentWeather?, WeatherLocation?>
+    suspend fun fetchCurrentWeatherMandatory(): Either<Failure, CurrentWeather>
 }

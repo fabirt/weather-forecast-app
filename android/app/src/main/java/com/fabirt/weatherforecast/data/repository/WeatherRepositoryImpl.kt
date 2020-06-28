@@ -57,11 +57,18 @@ class WeatherRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun fetchCurrentWeatherMandatory(): Pair<CurrentWeather?, WeatherLocation?> {
+    override suspend fun fetchCurrentWeatherMandatory(): Either<Failure, CurrentWeather> {
         return try {
-            fetchCurrentWeather()
+            withContext(Dispatchers.IO) {
+                val result = fetchCurrentWeather()
+                Either.Right(result.first)
+            }
         } catch (e: Exception) {
-            Pair(null, null)
+            when (e) {
+                is AppException -> Either.Left(e.toFailure())
+                is UnknownHostException -> Either.Left(Failure.NetworkFailure)
+                else -> Either.Left(Failure.UnexpectedFailure)
+            }
         }
     }
 

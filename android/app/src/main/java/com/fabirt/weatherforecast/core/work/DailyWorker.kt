@@ -13,6 +13,7 @@ import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.fabirt.weatherforecast.R
 import com.fabirt.weatherforecast.core.constants.NOTIFICATION_CHANNEL_ID
+import com.fabirt.weatherforecast.core.error.Failure
 import com.fabirt.weatherforecast.domain.repository.WeatherRepository
 import com.fabirt.weatherforecast.presentation.MainActivity
 
@@ -27,17 +28,33 @@ class DailyWorker @WorkerInject constructor(
     }
 
     override suspend fun doWork(): Result {
-        val (weather, location) = weatherRepository.fetchCurrentWeatherMandatory()
-        var content =
-            "Have a nice day! Remember to wash your hands, stay safe and check today's weather 🌥"
-        if (weather != null && location != null) {
-            val temperature = weather.temperature
-            content = if (temperature >= 30) {
-                "It is a little hot today. We have $temperature ºC. Take a shower and drink water"
-            } else {
-                "Everyday is a nice day! Today's temperature is $temperature ºC."
+        val result = weatherRepository.fetchCurrentWeatherMandatory()
+        val content = result.fold(
+            { failure ->
+                when (failure) {
+                    Failure.LocationPermissionNotGrantedFailure -> {
+                        "Let us access your location. You're missing today's weather 🌥"
+                    }
+                    Failure.LatestLocationNotFoundFailure -> {
+                        "We couldn't find your location. Have a nice day and check today's weather"
+                    }
+                    Failure.NetworkFailure -> {
+                        "Have a nice day! Remember to wash your hands, stay safe and check today's weather 🌥"
+                    }
+                    Failure.UnexpectedFailure -> {
+                        "Have a nice day! Remember to wash your hands, stay safe and check today's weather 🌥"
+                    }
+                }
+            }, { weather ->
+                val temperature = weather.temperature
+                if (weather.temperature >= 30) {
+                    "It is a little hot today. We have $temperature ºC. Take a shower and drink water"
+                } else {
+                    "Everyday is a nice day! Today's temperature is $temperature ºC."
+                }
             }
-        }
+        )
+
         val notification = buildNotification(content)
         NotificationManagerCompat.from(applicationContext).notify(2000, notification)
         return Result.success()
