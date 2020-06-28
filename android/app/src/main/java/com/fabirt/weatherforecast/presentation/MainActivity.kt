@@ -2,10 +2,8 @@ package com.fabirt.weatherforecast.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
-import androidx.appcompat.widget.TooltipCompat
 import androidx.core.view.forEach
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
@@ -15,7 +13,6 @@ import com.fabirt.weatherforecast.presentation.settings.SettingsFragmentDirectio
 import com.fabirt.weatherforecast.presentation.weather.WeatherFragmentDirections
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_main.*
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -33,19 +30,16 @@ class MainActivity : AppCompatActivity() {
         bottomNav.setupWithNavController(navController)
 
         // Removes BottomNavigationView tooltip
-        bottomNav.menu.forEach {
-            bottomNav.findViewById<View>(it.itemId).also { view ->
+        bottomNav.menu.forEach { menuItem ->
+            bottomNav.findViewById<View>(menuItem.itemId).also { view ->
                 view.setOnLongClickListener {
                     true
                 }
             }
         }
-        bottomNav.setOnNavigationItemSelectedListener {
-            selectedNavigationItemListener(it, bottomNav.selectedItemId)
-            true
-        }
     }
 
+    // Custom bottom navigation behaviour (Unused)
     private fun selectedNavigationItemListener(item: MenuItem, selectedId: Int) {
         val navController = findNavController(R.id.nav_host_fragment)
         when (item.itemId) {

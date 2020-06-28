@@ -6,14 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-
 import com.fabirt.weatherforecast.R
+import com.fabirt.weatherforecast.core.utils.TransitionsHelper
 
 class FutureWeatherFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = FutureWeatherFragment()
-    }
 
     private lateinit var viewModel: FutureWeatherViewModel
 
@@ -26,8 +22,8 @@ class FutureWeatherFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        TransitionsHelper.setupTransitions(this)
         viewModel = ViewModelProvider(this).get(FutureWeatherViewModel::class.java)
         // TODO: Use the ViewModel
     }
-
 }

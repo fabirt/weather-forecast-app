@@ -14,6 +14,7 @@ import com.fabirt.weatherforecast.core.constants.LOCATION_PERMISSION_REQUEST_COD
 import com.fabirt.weatherforecast.core.utils.DialogManager
 import com.fabirt.weatherforecast.core.error.Failure
 import com.fabirt.weatherforecast.core.utils.SettingsManager
+import com.fabirt.weatherforecast.core.utils.TransitionsHelper
 import com.fabirt.weatherforecast.data.models.WeatherLocation
 import com.fabirt.weatherforecast.databinding.FragmentWeatherBinding
 import com.fabirt.weatherforecast.domain.entities.CurrentWeather
@@ -37,6 +38,7 @@ class WeatherFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        TransitionsHelper.setupTransitions(this)
         checkPermissions()
     }
 

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.fabirt.weatherforecast.core.utils.SettingsManager
+import com.fabirt.weatherforecast.core.utils.TransitionsHelper
 import com.fabirt.weatherforecast.databinding.FragmentSettingsBinding
 
 class SettingsFragment : Fragment() {
@@ -33,6 +34,7 @@ class SettingsFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        TransitionsHelper.setupTransitions(this)
         val viewModelFactory = SettingsViewModelFactory(requireContext())
         viewModel = ViewModelProvider(this, viewModelFactory).get(SettingsViewModel::class.java)
         observeViewModel()
