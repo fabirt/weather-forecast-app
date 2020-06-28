@@ -48,3 +48,5 @@ The development process involved learning the following topics:
 - **Product flavors:** Build variants to create different versions of your app from a single project, for example, with different base API url.
 
 - **DayNight Theme:** Support dark theme for Android 10 (API level 29) and higher.
+
+- **Transitions:** Window content transitions using Android Transitions API.
