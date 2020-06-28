@@ -1,7 +1,6 @@
 package com.fabirt.weatherforecast.data.repository
 
 import androidx.lifecycle.Transformations
-import com.fabirt.weatherforecast.core.error.AppException
 import com.fabirt.weatherforecast.core.error.Failure
 import com.fabirt.weatherforecast.core.extensions.asDomainEntity
 import com.fabirt.weatherforecast.core.other.Either
@@ -12,11 +11,8 @@ import com.fabirt.weatherforecast.data.providers.LocationProvider
 import com.fabirt.weatherforecast.data.providers.UpdateTimeProvider
 import com.fabirt.weatherforecast.domain.entities.CurrentWeather
 import com.fabirt.weatherforecast.domain.repository.WeatherRepository
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import org.threeten.bp.LocalDate
 import org.threeten.bp.format.DateTimeFormatter
-import java.net.UnknownHostException
 import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -27,7 +23,7 @@ class WeatherRepositoryImpl @Inject constructor(
     private val weatherService: WeatherApiService,
     private val updateTimeProvider: UpdateTimeProvider,
     private val locationProvider: LocationProvider
-) : WeatherRepository {
+) : BaseRepository(), WeatherRepository {
 
     override val currentWeather = weatherDao.readCurrentWeather()
 
@@ -41,34 +37,18 @@ class WeatherRepositoryImpl @Inject constructor(
         }
 
     override suspend fun fetchCurrentWeatherRacionale(): Either<Failure, Unit> {
-        return try {
-            withContext(Dispatchers.IO) {
-                if (updateTimeProvider.isCurrentWeatherUpdateNeeded()) {
-                    fetchCurrentWeather()
-                }
-                Either.Right(Unit)
+        return transformExceptionsAsync {
+            if (updateTimeProvider.isCurrentWeatherUpdateNeeded()) {
+                fetchCurrentWeather()
             }
-        } catch (e: Exception) {
-            when (e) {
-                is AppException -> Either.Left(e.toFailure())
-                is UnknownHostException -> Either.Left(Failure.NetworkFailure)
-                else -> Either.Left(Failure.UnexpectedFailure)
-            }
+            Either.Right(Unit)
         }
     }
 
     override suspend fun fetchCurrentWeatherMandatory(): Either<Failure, CurrentWeather> {
-        return try {
-            withContext(Dispatchers.IO) {
-                val result = fetchCurrentWeather()
-                Either.Right(result.first)
-            }
-        } catch (e: Exception) {
-            when (e) {
-                is AppException -> Either.Left(e.toFailure())
-                is UnknownHostException -> Either.Left(Failure.NetworkFailure)
-                else -> Either.Left(Failure.UnexpectedFailure)
-            }
+        return transformExceptionsAsync {
+            val result = fetchCurrentWeather()
+            Either.Right(result.first)
         }
     }
 
