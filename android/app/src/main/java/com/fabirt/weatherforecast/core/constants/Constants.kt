@@ -29,3 +29,8 @@ const val LOCATION_PERMISSION_REQUEST_CODE = 1
  * Notification channel id.
  */
 const val NOTIFICATION_CHANNEL_ID = "WEATHER_FORECAST_NOTIFICATION_CHANNEL"
+
+/**
+ * Weekly forecast shortcut intent data identifier.
+ */
+const val WEEKLY_FORECAST_SHORTCUT = "WEEKLY_FORECAST_SHORTCUT"

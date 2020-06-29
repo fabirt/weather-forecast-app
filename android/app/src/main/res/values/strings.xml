@@ -21,4 +21,9 @@
         Weather Info: Powered by Weatherstack API </string>
     <string name="location_permissions_label">Allow location access</string>
     <string name="location_enabled_label">GPS enabled</string>
+    <string name="weekly_forecast_shortcut_short_label">Weekly Forecast</string>
+    <string name="weekly_forecast_shortcut_long_label">Weekly Forecast</string>
+    <string name="settings_shortcut_short_label">Settings</string>
+    <string name="settings_shortcut_long_label">Settings</string>
+    <string name="disabled_shortcut_message">Not available</string>
 </resources>

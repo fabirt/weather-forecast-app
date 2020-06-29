@@ -8,6 +8,7 @@ import androidx.core.view.forEach
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.fabirt.weatherforecast.R
+import com.fabirt.weatherforecast.core.constants.WEEKLY_FORECAST_SHORTCUT
 import com.fabirt.weatherforecast.presentation.futureweather.FutureWeatherFragmentDirections
 import com.fabirt.weatherforecast.presentation.settings.SettingsFragmentDirections
 import com.fabirt.weatherforecast.presentation.weather.WeatherFragmentDirections
@@ -21,12 +22,23 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setTheme(R.style.AppTheme)
         setContentView(R.layout.activity_main)
-        initializeUI()
+        setupBottomNav()
     }
 
-    private fun initializeUI() {
+    private fun setupBottomNav() {
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_nav)
         val navController = findNavController(R.id.nav_host_fragment)
+        // val navInflater = navController.navInflater
+        // val graph = navInflater.inflate(R.navigation.nav_graph)
+        intent.data?.let { data ->
+            when (data.toString()) {
+                WEEKLY_FORECAST_SHORTCUT -> {
+                    navController.navigate(R.id.futureWeatherFragment)
+                    //graph.startDestination = R.id.futureWeatherFragment
+                    //navController.graph = graph
+                }
+            }
+        }
         bottomNav.setupWithNavController(navController)
 
         // Removes BottomNavigationView tooltip

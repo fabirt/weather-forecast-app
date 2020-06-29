@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:enabled="true"
+        android:icon="@mipmap/ic_weather_shortcut"
+        android:shortcutDisabledMessage="@string/disabled_shortcut_message"
+        android:shortcutId="sc1"
+        android:shortcutLongLabel="@string/weekly_forecast_shortcut_short_label"
+        android:shortcutShortLabel="@string/weekly_forecast_shortcut_long_label">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="WEEKLY_FORECAST_SHORTCUT"
+            android:targetClass="com.fabirt.weatherforecast.presentation.MainActivity"
+            android:targetPackage="com.fabirt.weatherforecast" />
+        <categories android:name="android.shortcut.conversation" />
+    </shortcut>
+</shortcuts>
