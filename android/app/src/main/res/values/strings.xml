@@ -15,7 +15,7 @@
     <string name="settings_title">SETTINGS</string>
     <string name="about_title">ABOUT</string>
     <string name="about_text_content">
-        \u0020Version: 0.0.5\n
+        \u0020Version: 0.0.6\n
         Developers: Fabirt\n
         Design: Group 20 - UI design 2019 Course\n
         Weather Info: Powered by Weatherstack API </string>
