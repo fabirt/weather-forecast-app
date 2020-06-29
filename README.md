@@ -50,3 +50,5 @@ The development process involved learning the following topics:
 - **DayNight Theme:** Support dark theme for Android 10 (API level 29) and higher.
 
 - **Transitions:** Window content transitions using Android Transitions API.
+
+- **Shortcuts:** To quickly start common or recommended tasks within the app.
