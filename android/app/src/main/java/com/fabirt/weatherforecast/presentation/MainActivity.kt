@@ -49,6 +49,10 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+
+        // Prevent recreate the current fragment
+        bottomNav.setOnNavigationItemReselectedListener {
+        }
     }
 
     // Custom bottom navigation behaviour (Unused)
