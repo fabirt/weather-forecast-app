@@ -21,6 +21,8 @@ The development process involved learning the following topics:
 
 - **Layouts:** Design custom layouts.
 
+- **Components:** Create custom and reusable view components.
+
 - **Data binding:** Allows to bind UI components in your layouts to data sources in your app.
 
 - **Binding adapters:** Are responsible for making the appropriate framework calls to set values.
