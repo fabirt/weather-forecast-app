@@ -6,6 +6,7 @@ import android.view.WindowManager
 import android.widget.Button
 import android.widget.TextView
 import com.fabirt.weatherforecast.R
+import com.fabirt.weatherforecast.core.components.MainButton
 
 object DialogManager {
     fun show(
@@ -30,8 +31,8 @@ object DialogManager {
         window.setBackgroundDrawable(context.getDrawable(R.drawable.shape_popup))
         val titleText = dialog.findViewById<TextView>(R.id.dialogTitleText)
         val bodyText = dialog.findViewById<TextView>(R.id.dialogBodyText)
-        val positiveButton = dialog.findViewById<Button>(R.id.dialogPositiveButton)
-        val negativeButton = dialog.findViewById<Button>(R.id.dialogNegativeButton)
+        val positiveButton = dialog.findViewById<MainButton>(R.id.dialogPositiveButton)
+        val negativeButton = dialog.findViewById<MainButton>(R.id.dialogNegativeButton)
         titleText.text = title
         bodyText.text = body
         positiveButton.text = positiveText

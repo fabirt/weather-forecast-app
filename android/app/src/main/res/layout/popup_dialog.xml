@@ -34,42 +34,25 @@
         android:textColor="@color/colorPrimaryDark"
         tools:text="Lorem ipsum dolor sit amet consectetur adipiscing elit ultricies scelerisque, porta et blandit fusce phasellus iaculis class metus dui, rhoncus semper ante condimentum nisl fermentum per tortor." />
 
-    <Button
+    <com.fabirt.weatherforecast.core.components.MainButton
         android:id="@+id/dialogPositiveButton"
-        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp"
-        android:backgroundTint="@color/colorAccent"
-        android:elevation="0dp"
-        android:fontFamily="@font/helvetica_neue_medium"
-        android:paddingTop="12dp"
-        android:paddingBottom="12dp"
-        android:text=""
-        android:textAllCaps="true"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        app:cornerRadius="8dp"
-        tools:text="Choose Action" />
+        app:splashColor="@color/colorAccentHighlight"
+        app:text=""
+        app:textColor="@color/colorPrimary"
+        app:tintColor="@color/colorAccent"
+        tools:text="Choose action" />
 
-    <Button
+    <com.fabirt.weatherforecast.core.components.MainButton
         android:id="@+id/dialogNegativeButton"
-        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp"
         android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/colorSecondaryButton"
-        android:elevation="0dp"
-        android:fontFamily="@font/helvetica_neue_medium"
-        android:paddingTop="12dp"
-        android:paddingBottom="12dp"
-        android:text=""
-        android:textAllCaps="true"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
-        android:textColor="@color/colorPrimaryDark"
-        app:cornerRadius="8dp"
-        app:rippleColor="@color/colorPrimaryDarkRipple"
+        app:splashColor="@color/colorPrimaryDarkRipple"
+        app:text=""
+        app:textColor="@color/colorPrimaryDark"
+        app:tintColor="@color/colorSecondaryButton"
         tools:text="Cancel" />
+
 </LinearLayout>

@@ -8,4 +8,5 @@
     <color name="colorSurface">#303030</color>
     <color name="colorSecondaryButton">#424242</color>
     <color name="colorPrimaryDarkRipple">#24F6F6F6</color>
+    <color name="colorAccentHighlight">#20000000</color>
 </resources>
