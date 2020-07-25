@@ -4,6 +4,9 @@
     <string name="future_weather">This week</string>
     <string name="settings">Settings</string>
     <string name="future_weather_title">Weekly Forecast</string>
+    <string name="ok">OK</string>
+    <string name="retry">Retry</string>
+    <string name="allow">Allow</string>
     <string name="not_available">NOT AVAILABLE</string>
     <string name="not_available_description">TODO</string>
     <string name="real_feel_label">Real feel:</string>
@@ -15,7 +18,7 @@
     <string name="settings_title">SETTINGS</string>
     <string name="about_title">ABOUT</string>
     <string name="about_text_content">
-        \u0020Version: 0.0.6\n
+        \u0020Version: %1$s\n
         Developers: Fabirt\n
         Design: Group 20 - UI design 2019 Course\n
         Weather Info: Powered by Weatherstack API </string>
@@ -26,4 +29,11 @@
     <string name="settings_shortcut_short_label">Settings</string>
     <string name="settings_shortcut_long_label">Settings</string>
     <string name="disabled_shortcut_message">Not available</string>
+
+    <string name="humidity_percentage">%1$d %%</string>
+    <string name="atm_pressure">%1$d mb</string>
+    <string name="wind_speed">%1$d km/h</string>
+    <string name="temperature">%1$dº</string>
+    <string name="visibility">%1$d km</string>
+
 </resources>

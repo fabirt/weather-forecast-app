@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import com.fabirt.weatherforecast.R
 import com.fabirt.weatherforecast.core.constants.LOCATION_PERMISSION_REQUEST_CODE
 import com.fabirt.weatherforecast.core.utils.DialogManager
 import com.fabirt.weatherforecast.core.error.Failure
@@ -57,7 +58,7 @@ class WeatherFragment : Fragment() {
                     requireContext(),
                     title = Failure.LocationPermissionNotGrantedFailure.title,
                     body = Failure.LocationPermissionNotGrantedFailure.message,
-                    positiveText = "Settings",
+                    positiveText = resources.getString(R.string.settings),
                     onConfirm = {
                         SettingsManager.openAppSettings(requireContext())
                     }
@@ -84,7 +85,7 @@ class WeatherFragment : Fragment() {
                 requireContext(),
                 title = Failure.LocationPermissionNotGrantedFailure.title,
                 body = Failure.LocationPermissionNotGrantedFailure.message,
-                positiveText = "Allow",
+                positiveText = resources.getString(R.string.allow),
                 onConfirm = {
                     requestPermissions(
                         arrayOf(locationPermission),
@@ -106,7 +107,7 @@ class WeatherFragment : Fragment() {
         })
 
         viewModel.currentLocation.observe(viewLifecycleOwner, Observer { location ->
-            location?.let(this::updateLocationView)
+            location?.let(::updateLocationView)
         })
 
         viewModel.failure.observe(viewLifecycleOwner, Observer { failure ->
@@ -116,13 +117,13 @@ class WeatherFragment : Fragment() {
 
     private fun updateWeatherView(weather: CurrentWeather) {
         binding.weather = weather
-        binding.humidityText.text = "${weather.humidity}%"
-        binding.pressureText.text = "${weather.pressure} mb"
-        binding.windSpeedText.text = "${weather.windSpeed} km/h"
-        binding.temperatureText.text = "${weather.temperature}º"
-        binding.realFeelText.text = "${weather.feelslike}º"
+        binding.humidityText.text = resources.getString(R.string.humidity_percentage, weather.humidity)
+        binding.pressureText.text = resources.getString(R.string.atm_pressure, weather.pressure)
+        binding.windSpeedText.text = resources.getString(R.string.wind_speed, weather.windSpeed)
+        binding.temperatureText.text = resources.getString(R.string.temperature, weather.temperature)
+        binding.realFeelText.text = resources.getString(R.string.temperature, weather.feelslike)
         binding.windDirectionText.text = weather.windDir
-        binding.visibilityText.text = "${weather.visibility} km"
+        binding.visibilityText.text = resources.getString(R.string.visibility, weather.visibility)
         binding.weatherDescriptionText.text = weather.weatherDescription
     }
 
@@ -134,29 +135,29 @@ class WeatherFragment : Fragment() {
     private fun handleFailure(failure: Failure) {
         val title = failure.title
         val body = failure.message
-        var actionText = "OK"
+        var actionText = resources.getString(R.string.ok)
         var onConfirm = {}
         when (failure) {
             Failure.LocationPermissionNotGrantedFailure -> {
-                actionText = "Settings"
+                actionText = resources.getString(R.string.settings)
                 onConfirm = {
                     SettingsManager.openAppSettings(requireContext())
                 }
             }
             Failure.LatestLocationNotFoundFailure -> {
-                actionText = "Settings"
+                actionText = resources.getString(R.string.settings)
                 onConfirm = {
                     SettingsManager.openLocationSettings(requireContext())
                 }
             }
             Failure.NetworkFailure -> {
-                actionText = "Settings"
+                actionText = resources.getString(R.string.settings)
                 onConfirm = {
                     SettingsManager.openWifiSettings(requireContext())
                 }
             }
             Failure.UnexpectedFailure -> {
-                actionText = "Retry"
+                actionText = resources.getString(R.string.retry)
                 onConfirm = {
                     viewModel.requestCurrenWeather()
                 }
@@ -171,5 +172,4 @@ class WeatherFragment : Fragment() {
         )
         viewModel.clearFailure()
     }
-
 }
